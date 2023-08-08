@@ -149,7 +149,7 @@ body {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 3px;
-    transition: background .5s;
+    transition: ease .5s;
     width: 100%;
 }
 
@@ -162,6 +162,16 @@ h2{
         text-align: center;
         padding: 20px;
     
-    
-    
+}
+
+#MobNo{
+    outline: 0;
+}
+
+#MobNo:valid{
+    border-color: green;
+}
+
+#MobNo:focus:invalid{
+    border-color: red;
 }
