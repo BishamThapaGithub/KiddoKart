@@ -175,7 +175,7 @@
 							<svg>
 								<use xlink:href="#icon-add"></use>
 							</svg>
-							<span>View Products</span>
+							<a href="viewproducts.php"><span>View Products</span></a>
 						</a>
 					</li>
 					<li>

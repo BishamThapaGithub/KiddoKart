@@ -61,9 +61,9 @@ html {
 }
 
 body {
-	background: linear-gradient(to right, #bcbcbf, #dfcadb);
+	/* background: linear-gradient(to right, #bcbcbf, #dfcadb); */
 	font-family: 'Figtree', sans-serif;
-	color: var(--gray-base);
+	/* color: var(--gray-base); */
 }
 
 
