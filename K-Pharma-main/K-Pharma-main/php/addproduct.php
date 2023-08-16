@@ -290,6 +290,10 @@ if (isset($_GET['delete'])) {
                <br>
                <input type="number" placeholder="Enter Price" name="product_price" class="box">
                <br>
+               Product Description:
+               <br>
+               <input type="text" placeholder="Enter Description" name="product_price" class="box">
+               <br>
                Insert Picture Of Product:
                <br>
                <input type="file" accept="image/jpg, image/png, image/jpeg" name="product_img" class="box">

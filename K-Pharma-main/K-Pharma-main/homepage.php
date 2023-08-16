@@ -1,8 +1,15 @@
 <?php
 include_once('./php/connection.php');
 $sql = "SELECT * FROM products JOIN categories ON categories.c_id = products.c_id";
+
 $all_product = $conn->query($sql);
+print_r($all_product);
+
 $previous_category = null;
+session_start();
+
+$username=$_SESSION['username'];
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +44,7 @@ $previous_category = null;
         <div class="navicon">
 
             <a href="register.html"><i class='bx bx-user'></i></a>
-            <a href="#"><i class='bx bx-cart' id="cart-icon"></i></a>
+            <a href="./php/viewproducts.php"><i class='bx bx-cart' ></i></a>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
         <div class="cart" id="carts">
@@ -51,14 +58,27 @@ $previous_category = null;
                 <div class="total-title">Total:</div>
                 <div class="total-price">$0</div>
             </div>
-            <!-- <button type="button" class="btn-buy">Buy now</button> -->
-            <a href="#" class="btn-buy">Buy Now</a>
+
+            <!-- <button type="button" class="btn-buy buy-now" >Buy now</button> -->
+            <!-- <form method="post">
+                <button type="submit" name="buy-nows" class="btn-buy buy-now">Buy now</button>
+            </form>
+            <?php
+            // if (isset($_POST['buy-nows'])) {
+            //     if (isset($_SESSION['username'])) {
+            //         // Perform actual purchase logic or redirect to a purchase page
+            //         header("location:./php/viewproducts.php?id=$rid&uname=$username");
+            //     } else {
+            //         header('location:signin.html');
+            //     }
+            // }
+            ?> -->
             <i class='bx bx-x' id="close-cart"> </i>
         </div>
 
 
     </header>
-
+    <!-- -->
     <section class="home">
         <div class="home-text">
             <h1>KIDs Pharmacy</h1>
@@ -146,10 +166,12 @@ $previous_category = null;
         </div>
     </section>
     <!--Pharmacies partnered with-->
+ 
 
     <?php
     while ($row = mysqli_fetch_assoc($all_product)) {
         $current_category = $row['c_title'];
+
 
         if ($current_category != $previous_category) {
             // Close the previous product container if it's not the first category
@@ -178,7 +200,7 @@ $previous_category = null;
                         </h2>
                     </div>
                     <div class="description">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo soluta nisi necessitatibus, debitis incidunt iure libero harum neque, nam expedita quisquam ea ipsam. Architecto ducimus accusantium error voluptatum hic quod?</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo soluta nisi necessitatibus</p>
                     </div>
                     <div>
                         <span class="price">
@@ -187,16 +209,28 @@ $previous_category = null;
                     </div>
 
                     <div>
-                        <button class="add-cart" <?php echo $row['id']; ?>>
+<!--                    
+                        <button class="add-cart">
                             <i class='bx bx-shopping-bag add-cart'> ADD TO CART</i>
-                        </button>
+                        </button> -->
+                        <form action="test.php" method="POST">
+
+                            
+                            <input type="" name="productid" value="<?php echo $row['id']?>">
+                            <input type="submit" value="addtocart" name="gotocart">
+                           
+                        </form>
                     </div>
                 </div>
+                
 
                 <?php
     }
     ?>
 
+
+
+        
 
 
             <?php
@@ -327,7 +361,7 @@ $previous_category = null;
     </script>
 
     <script src="./javascript/newscript.js"></script>
-    <script src="./javascript/prodduct.js"></script>
+    <!-- <script src="./javascript/prodduct.js"></script> -->
     <script src="./javascript/scroll.js"></script>
 </body>
 

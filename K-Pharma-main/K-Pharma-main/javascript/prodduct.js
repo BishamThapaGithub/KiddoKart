@@ -31,7 +31,7 @@ document
   .addEventListener("click", buyButtonClicked);
 //function Buy Button
 function buyButtonClicked() {
-  alert("your order is placed");
+  // alert("your order is placed");
   var cartContent = document.getElementsByClassName("cart-content")[0];
   while (cartContent.hasChildNodes()) {
     cartContent.removeChild(cartContent.firstChild);

@@ -21,8 +21,10 @@ session_start();
       exit();
     } else if($row['UserRole'] == "user") {
       $_SESSION['username'] = $row['Username'];
+      $_SESSION['ID'] = $row['ID'];
+
  
-      header('Location:userdb.php');
+      header('Location:../homepage.php');
       exit();
       
      

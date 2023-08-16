@@ -231,27 +231,7 @@ $all_product = $conn->query($sql);
 
         <main>
     
-    <?php 
-    while($row = mysqli_fetch_assoc($all_product)){
-      ?> 
-    
-    <div class="card">
-     <div class="image">
-      <img  class="product-img" src="./upload_image/<?php echo $row['product_img']; ?>" alt="">
-     </div> 
-     <div class="caption">
-      <h1 class="product_title"><?php echo $row['product_name']?></h1>
-      <!-- <p class="product_description"><?php echo $row['product_description'];?></p> -->
-
-      <h3 class="price"><b><?php echo"RS " .$row['product_price'] ?></b></h3>
-     </div>
-     <div class="des">
-     <i class='bx bx-shopping-bag add-cart'></i>
-     </div>
-    </div>
-    <?php
-    }
-    ?>
+ 
    </main>
 
 
