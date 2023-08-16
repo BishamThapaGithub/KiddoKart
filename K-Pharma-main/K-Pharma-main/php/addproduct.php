@@ -1,17 +1,19 @@
 <?php
 include_once('connection.php');
 if (isset($_POST['add_product'])) {
-
+   $category_id = $_POST['c_id'];
    $product_name = $_POST['product_name'];
    $product_price = $_POST['product_price'];
    $product_image = $_FILES['product_img']['name'];
    $product_image_tmp_name = $_FILES['product_img']['tmp_name'];
    $product_image_folder = 'upload_image/' . $product_image;
+ 
+
 
    if (empty($product_name) || empty($product_price) || empty($product_image)) {
       $message[] = 'please fill out all';
    } else {
-      $insert = "INSERT INTO products(product_name, product_price, product_img) VALUES('$product_name', '$product_price', '$product_image')";
+      $insert = "INSERT INTO products(c_id,product_name, product_price, product_img) VALUES('$category_id','$product_name', '$product_price', '$product_image')";
       $upload = mysqli_query($conn, $insert);
       if ($upload) {
          move_uploaded_file($product_image_tmp_name, $product_image_folder);
@@ -28,7 +30,8 @@ if (isset($_POST['add_product'])) {
 <?php
 if (isset($_GET['delete'])) {
    $id = $_GET['delete'];
-   mysqli_query($conn, "DELETE FROM products WHERE id = $id");
+   $deleteQuery = "DELETE FROM products WHERE c_id IN (SELECT c_id FROM categories)";
+   mysqli_query($conn, $deleteQuery);
    header('location:addproduct.php');
 }
 ;
@@ -260,7 +263,25 @@ if (isset($_GET['delete'])) {
          <div class="admin-product-form-container">
 
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
-               <h3>Enter Product Details</h3>
+            <h3>Enter Product Details</h3>
+    Categories:
+    <select name="c_id" class="box">
+        <option value="">Select Category</option>
+        <?php
+        $Categories = mysqli_query($conn, "SELECT * FROM categories") or die(mysqli_error($conn));
+        $IsAnyCategoryAvailable = mysqli_num_rows($Categories);
+
+        if ($IsAnyCategoryAvailable > 0) {
+            while ($row = mysqli_fetch_assoc($Categories)) {
+                $category_id = $row['c_id'];
+                $category_title = $row['c_title'];
+                echo $category_title;
+                echo '<option value="' . $category_id . '">' . $category_title . '</option>';
+            }
+        }
+        ?>
+    </select>
+               <br>
                Name Of Product:
                <br>
                <input type="text" placeholder="Enter Name Of Product" name="product_name" class="box">
@@ -278,45 +299,56 @@ if (isset($_GET['delete'])) {
 
             <?php
 
-            $select = mysqli_query($conn, "SELECT * FROM products");
-            $sn = 1;
+        
+$sql = "SELECT * FROM products JOIN categories ON categories.c_id = products.c_id";
+$result = mysqli_query($conn, $sql); // Execute the SQL query
 
-            ?>
-            <div class="product-display">
-               <table class="product-display-table">
-                  <thead>
-                     <tr>
-                        <th>S.N</th>
-                        <th>product image</th>
-                        <th>product name</th>
-                        <th>product price</th>
-                        <th>action</th>
-                     </tr>
-                  </thead>
-                  <?php while ($row = mysqli_fetch_assoc($select)) { ?>
+$sn = 1;
+?>
+<div class="product-display">
+   <table class="product-display-table">
+      <thead>
+         <tr>
+            <th>S.N</th>
+            <th>product image</th>
+            <th>product name</th>
+            <th>description</th>
+            <th>product price</th>
+            <th>Categories</th>
+            <th>action</th>
+            
+         </tr>
+      </thead>
+      <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
-                     <tr>
-                        <td>
-                           <?php echo $sn++; ?>
-                        </td>
-                        <td><img src="upload_image/<?php echo $row['product_img']; ?>" height="100"></td>
-                        <td>
-                           <?php echo $row['product_name']; ?>
-                        </td>
-                        <td>$
-                           <?php echo $row['product_price']; ?>/-
-                        </td>
-                        <td>
-                           <a href="./update.php?edit=<?php echo $row['id']; ?>" class="btn" style="width: fit-content;"> 
-                                  edit </a>
-                           <a href="addproduct.php?delete=<?php echo $row['id']; ?>" class="btn" style="width: fit-content;"> 
-                                </i> delete </a>
+         <tr>
+            <td>
+               <?php echo $sn++; ?>
+            </td>
+            <td><img src="upload_image/<?php echo $row['product_img']; ?>" height="100"></td>
+            <td>
+               <?php echo $row['product_name']; ?>
+            </td>
+            <td>$
+               <?php echo $row['product_price']; ?>/-
+            </td>
+            <td>
+               <?php echo $row['c_title']; ?>
+            </td>
+            <td>
+               <a href="./update.php?edit=<?php echo $row['c_id']; ?>" class="btn" style="width: fit-content;"> 
+                      edit 
+               </a>
+               <a href="addproduct.php?delete=<?php echo $row['c_id']; ?>" class="btn" style="width: fit-content;"> 
+                    delete 
+               </a>
+            </td>
+         </tr>
+      <?php } ?>
+   </table>
+</div>
 
-                        </td>
-                     </tr>
-                  <?php } ?>
-               </table>
-            </div>
+               
 
 
             <script src="app.js"></script>

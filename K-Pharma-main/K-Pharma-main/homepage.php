@@ -1,7 +1,8 @@
 <?php
 include_once('./php/connection.php');
-$sql = "SELECT *FROM products";
+$sql = "SELECT * FROM products JOIN categories ON categories.c_id = products.c_id";
 $all_product = $conn->query($sql);
+$previous_category = null;
 ?>
 
 <!DOCTYPE html>
@@ -50,10 +51,11 @@ $all_product = $conn->query($sql);
                 <div class="total-title">Total:</div>
                 <div class="total-price">$0</div>
             </div>
-            <button type="button" class="btn-buy">Buy now</button>
+            <!-- <button type="button" class="btn-buy">Buy now</button> -->
+            <a href="#" class="btn-buy">Buy Now</a>
             <i class='bx bx-x' id="close-cart"> </i>
         </div>
-        
+
 
     </header>
 
@@ -141,39 +143,74 @@ $all_product = $conn->query($sql);
                 </div>
                 <h4>Syrup</h4>
             </div>
-                </div>
+        </div>
     </section>
     <!--Pharmacies partnered with-->
 
-    
-    <section class="shop-container" id="equipments-section">
-    <h2 class="section-title"> Recently added </h2>
-        <div class="products">
-        <!-- <h2 class="section-title"> Shope Products</h2> -->
-        
-        <?php 
-    while($row = mysqli_fetch_assoc($all_product)){
-      ?> 
-        <!-- contents -->
-        <div class="shope-content">
-            <!-- box 1 -->
-            <div class="product-box">
-                <img class="product-img" src="./php/upload_image/<?php echo $row['product_img']; ?>"alt="" class="product-img">
-                <h2 class="product-title"><?php echo $row['product_name']?></h2>
+    <?php
+    while ($row = mysqli_fetch_assoc($all_product)) {
+        $current_category = $row['c_title'];
 
-                <span class="price"><?php echo"RS " .$row['product_price'] ?></span>
-                <div>
-                <i class='bx bx-shopping-bag add-cart'></i>
-    </div>
-            </div>
-            <?php
+        if ($current_category != $previous_category) {
+            // Close the previous product container if it's not the first category
+            if ($previous_category !== null) {
+                echo '</div></section>';
+            }
+            // Open a new category section and product container
+            ?>
+            <section class="shop-container" id="equipments-section">
+                <h2 class="section-title">
+                    <?php echo $row['c_title']; ?>
+                </h2>
+                <div class="products">
+                    <?php
+                    $previous_category = $current_category;
+        }
+        ?>
+
+                <!-- Product box for each product -->
+                <div class="product-box">
+                    <img class="product-img" src="./php/upload_image/<?php echo $row['product_img']; ?>"
+                        alt="Product Image">
+                    <div>
+                        <h2 class="product-title">
+                            <?php echo $row['product_name'] ?>
+                        </h2>
+                    </div>
+                    <div class="description">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo soluta nisi necessitatibus, debitis incidunt iure libero harum neque, nam expedita quisquam ea ipsam. Architecto ducimus accusantium error voluptatum hic quod?</p>
+                    </div>
+                    <div>
+                        <span class="price">
+                            <?php echo "$ " . $row['product_price'] ?>
+                        </span>
+                    </div>
+
+                    <div>
+                        <button class="add-cart" <?php echo $row['id']; ?>>
+                            <i class='bx bx-shopping-bag add-cart'> ADD TO CART</i>
+                        </button>
+                    </div>
+                </div>
+
+                <?php
     }
     ?>
-    
-    </div>
-</div>
-            
-                </section>
+
+
+
+            <?php
+            // Close the last product container
+            if ($previous_category !== null) {
+                echo '</div></section>';
+            }
+            ?>
+
+
+        </div>
+        </div>
+
+    </section>
 
     <section class="partners" id="partners-section">
         <div class="p-text">
@@ -258,7 +295,7 @@ $all_product = $conn->query($sql);
                 <p>+977 9845654533</p>
             </a>
         </div>
-        
+
     </section>
 
     <div class="copyright">
