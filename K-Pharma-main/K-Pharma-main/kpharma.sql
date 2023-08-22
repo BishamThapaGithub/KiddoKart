@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2023 at 12:01 PM
+-- Generation Time: Aug 22, 2023 at 03:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `cart_quantity`, `user_id`, `product_id`) VALUES
-(5, 1, 31, 19);
+(77, 1, 33, 20);
 
 -- --------------------------------------------------------
 
@@ -67,6 +67,34 @@ INSERT INTO `categories` (`c_id`, `c_title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `users_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `product_id`, `users_id`) VALUES
+(21, 20, 33),
+(22, 20, 33),
+(23, 19, 33),
+(24, 19, 33),
+(25, 20, 33),
+(26, 20, 33),
+(27, 20, 33),
+(28, 19, 33),
+(29, 21, 33),
+(30, 19, 33);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `precription`
 --
 
@@ -86,7 +114,8 @@ INSERT INTO `precription` (`ID`, `Username`, `p_date`, `description`, `p_img`) V
 (6, 'abcd', '4333-12-23', 'ergsytrsutrtur', 'wallpaper.jpg'),
 (7, 'abcd', '3233-12-23', '53434543', 'wallpaper.jpg'),
 (8, 'abcd', '3344-01-22', '342ewtrewftr', 'wallpaper.jpg'),
-(9, 'abcd', '0000-00-00', '3423423425', 'wallpaper.jpg');
+(9, 'abcd', '0000-00-00', '3423423425', 'wallpaper.jpg'),
+(10, 'abcd', '2023-08-22', 'ubiiihj', 'f1.jpg');
 
 -- --------------------------------------------------------
 
@@ -113,7 +142,8 @@ INSERT INTO `products` (`id`, `categories`, `product_name`, `product_price`, `pr
 (20, '', 'Bisham Thapa', '1223', 'f1.jpg', 1, NULL),
 (21, '', 'Bisham Thapa', '1232', 'f2.jpg', 2, NULL),
 (22, '', 'ram thapa', '546', 'f5.png', 5, NULL),
-(23, '', 'Bisham Thapa', '45', 'f3.jpg', 5, NULL);
+(23, '', 'Bisham Thapa', '45', 'f3.jpg', 5, NULL),
+(24, '', 'vitamin c', 'fsda', 'f5.png', 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -138,7 +168,9 @@ INSERT INTO `users` (`ID`, `Username`, `Email`, `Password`, `Age`, `UserRole`) V
 (3, 'Bisham Thapa', 'bishamthapa@gmail.com', 'bisham12', 20, 'Admin'),
 (4, 'Anish Gurung', 'Anishgurung@gmail.com', 'anish12', 20, 'Admin'),
 (28, 'hdksfjakh ', 'nareshhh@gmail.com', 'bisham@1234', 21, 'user'),
-(31, 'BishamThapa', 'bisham122@gmail.com', 'ryuken@22', 21, 'user');
+(31, 'BishamThapa', 'bisham122@gmail.com', 'ryuken@22', 21, 'user'),
+(32, 'Ram thapa', 'ramthapa@gmail.com', 'ramthapa@123', 23, 'user'),
+(33, 'hero dai', 'herodai@gmail.com', 'herodai1010', 29, 'user');
 
 --
 -- Indexes for dumped tables
@@ -157,6 +189,14 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`c_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `users_id` (`users_id`);
 
 --
 -- Indexes for table `precription`
@@ -185,7 +225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -194,22 +234,28 @@ ALTER TABLE `categories`
   MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
 -- AUTO_INCREMENT for table `precription`
 --
 ALTER TABLE `precription`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
@@ -221,6 +267,13 @@ ALTER TABLE `users`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`ID`) ON DELETE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `users` (`ID`);
 
 --
 -- Constraints for table `products`
