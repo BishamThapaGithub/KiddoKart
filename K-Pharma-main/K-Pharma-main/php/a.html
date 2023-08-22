@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  .icon-container {
+    display: inline-block;
+    position: relative;
+    animation: zoomInOut 3s infinite;
+  }
+
+  .icon-container:hover .upload-option {
+    display: block;
+  }
+
+  @keyframes zoomInOut {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  .upload-option {
+    display: none;
+    position: absolute;
+    top: 30px; /* Adjust as needed */
+    left: 0;
+    width: 100px; /* Adjust as needed */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  }
+</style>
 </head>
 <body>
-    <a href="../admin/admindb.html"></a>
-    
+  <div class="icon-container">
+    <i class="bx bxs-camera"></i>
+    <div class="upload-option">
+      <p>Upload Prescription</p>
+      <!-- Add your upload prescription form or content here -->
+    </div>
+  </div>
+  <a href="../signin.html"></a>
+  <a href="../homepage.php"></a>
+  <a href="l"></a>
+  <a href="../image/logo.jpg"></a>
 </body>
 </html>
-<a href="../eqp/oximeter.jpg"></a>
-
-<div class="form-container">
-    <h1>Prescription List</h1>
-    <div class="admin-product-form-container">
-
-
-
-  <a href="prescriptionshow.php"></a>
-  <a href="./admindb.html"></a>
-  <div class="main-text">
-        
-    <h1>KIDs Pharmacy</h1>
-    <p>Medicine comes with hope: the hope of having a healthy child, the hope of being able to raise your family.
-        </p>
-        <a href="signin.html" class="main-btn">Shop Now <i class='bx bx-right-arrow-alt'></i></a>
-</div>
-
-<a href="../javascript/showproduct.js"></a>
-<a href="productshow.css"></a>
-<a href="../"></a>

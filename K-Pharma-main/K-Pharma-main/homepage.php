@@ -8,7 +8,7 @@ print_r($all_product);
 $previous_category = null;
 session_start();
 
-$username=$_SESSION['username'];
+$username =   $_SESSION['username']
 
 ?>
 
@@ -29,6 +29,38 @@ $username=$_SESSION['username'];
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+  .icon-container {
+    display: inline-block;
+    position: relative;
+    animation: zoomInOut 2s infinite;
+  }
+
+  .icon-container:hover .upload-option {
+    display: block;
+  }
+
+  @keyframes zoomInOut {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  .upload-option {
+    display: none;
+    position: absolute;
+    top: 30px; /* Adjust as needed */
+    left: 0;
+    width: 180px; /* Adjust as needed */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  }
+</style>
 </head>
 
 <body>
@@ -45,7 +77,13 @@ $username=$_SESSION['username'];
 
             <a href="register.html"><i class='bx bx-user'></i></a>
             <a href="./php/viewproducts.php"><i class='bx bx-cart' ></i></a>
-            <div class="bx bx-menu" id="menu-icon"></div>
+            <div class="icon-container">
+    <a href="./prescription.html"><i class="bx bxs-camera"></i></a>
+    <div class="upload-option">
+      <p>Upload Prescription</p>
+      <!-- Add your upload prescription form or content here -->
+    </div>
+  </div>
         </div>
         <div class="cart" id="carts">
             <h2 class="cart-title">Your cart</h2>
@@ -214,9 +252,9 @@ $username=$_SESSION['username'];
                             <i class='bx bx-shopping-bag add-cart'> ADD TO CART</i>
                         </button> -->
                         <form action="test.php" method="POST">
+                        <input type="" name="productid" value="<?php echo $row['id']?>">
+                        <input type="number" value="1" name="quantity" min="1" max="12">
 
-                            
-                            <input type="" name="productid" value="<?php echo $row['id']?>">
                             <input type="submit" value="addtocart" name="gotocart">
                            
                         </form>

@@ -1,8 +1,8 @@
 <?php
 include_once('connection.php');
-$sql = "SELECT *FROM products";
-$all_product = $conn->query($sql);
-?>
+session_start();
+$username = $_SESSION['username']
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,20 +29,15 @@ $all_product = $conn->query($sql);
 
     <!-- Reset -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css">
-
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Boxicons link-->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- remix icons-->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
 
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="app.css">
 
-    <link rel="stylesheet" href="../css/viewproduct.css">
     <link rel="stylesheet" href="./product.css">
 </head>
 
@@ -153,7 +148,7 @@ $all_product = $conn->query($sql);
             </ul>
 
             <a href="#">
-                <span>Welcome__Bisham</span>
+                <span><?php echo $username ?></span>
                 <svg>
                     <use xlink:href="#icon-user"></use>
                 </svg>
@@ -208,11 +203,9 @@ $all_product = $conn->query($sql);
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <svg>
-                                <use xlink:href="#icon-settings"></use>
-                            </svg>
-                            <span>Settings</span>
+                        <a href="logout.php">
+                        <i class='bx bxs-log-out' ></i>
+                            <span>Logout</span>
                         </a>
                     </li>
 
@@ -229,14 +222,68 @@ $all_product = $conn->query($sql);
             </div> <!-- sidebar__theme-switcher -->
         </div> <!-- sidebar -->
 
-        <main>
-    
- 
-   </main>
+        <div class="form-container">
+            <h1>Order List</h1>
+            <div class="admin-product-form-container">
+                <?php
+                $user_id = $_SESSION['ID'];
+                $select = "SELECT c.*, p.*, u.Username FROM cart c
+                           INNER JOIN products p ON p.id = c.product_id
+                           INNER JOIN users u ON u.ID = c.user_id"; // Join users table to get customer name
+                $stmt = mysqli_prepare($conn, $select);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $sn = 1;
+                
+                ?>
 
 
+                <div class="product-display">
+                    <table class="product-display-table">
+                        <thead>
+                            <tr>
+                                <th>S.N</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Image</th>
+                                <th>Customer name</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        $total = 0;
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $total = $total + $row['product_price']*$row['cart_quantity'];
 
-        </div>
+                            ?>
+
+                            <tr>
+                                <td>
+                                    <?php echo $sn++; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['product_name']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['product_price']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['cart_quantity']; ?>
+                                </td>
+                                
+
+                                
+                                </td>
+
+                                <td><img src="./upload_image/<?php echo $row['product_img']; ?>" height="100"></td>
+                                <td><?php echo $row['Username'] ?>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                  
+                  
+                </div>
+            </div>
         </div>
 
     </section> <!-- main -->
