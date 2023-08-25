@@ -227,9 +227,14 @@ $username = $_SESSION['username']
             <div class="admin-product-form-container">
                 <?php
                 $user_id = $_SESSION['ID'];
-                $select = "SELECT c.*, p.*, u.Username FROM cart c
-                           INNER JOIN products p ON p.id = c.product_id
-                           INNER JOIN users u ON u.ID = c.user_id"; // Join users table to get customer name
+                // $select = "SELECT c.*, p.*, u.Username FROM orders c
+                //            INNER JOIN products p ON p.id = c.product_id
+                //            INNER JOIN users u ON u.ID = c.users_id"; // Join users table to get customer name
+
+
+                            $select = "SELECT  * FROM orders c
+                            INNER JOIN products p ON p.id = c.product_id
+                            INNER JOIN users u ON u.ID = c.users_id"; 
                 $stmt = mysqli_prepare($conn, $select);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
@@ -253,7 +258,7 @@ $username = $_SESSION['username']
                         <?php
                         $total = 0;
                         while ($row = mysqli_fetch_assoc($result)) {
-                            $total = $total + $row['product_price']*$row['cart_quantity'];
+                            // $total = $total + $row['product_price']*$row['cart_quantity'];
 
                             ?>
 
@@ -268,7 +273,7 @@ $username = $_SESSION['username']
                                     <?php echo $row['product_price']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $row['cart_quantity']; ?>
+                                    <?php echo $row['order_quantity']; ?>
                                 </td>
                                 
 

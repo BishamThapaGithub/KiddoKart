@@ -6,9 +6,9 @@ if (isset($_POST['myorder'])) {
     if (isset($_SESSION['ID'])) {
         $productid = $_POST['productid']; // Assuming product_id is from the cart
         $userid = $_SESSION['ID'];
-
+        $orderQuantity = $_POST['quantity'];
         // Insert into orders table
-        $insertquery = "INSERT INTO orders (product_id, users_id) VALUES (?, ?)";
+        $insertquery = "INSERT INTO orders (product_id, users_id,order_quantity) VALUES (?, ?, $orderQuantity)";
         $stmt = mysqli_prepare($conn, $insertquery);
         mysqli_stmt_bind_param($stmt, "ii", $productid, $userid);
 

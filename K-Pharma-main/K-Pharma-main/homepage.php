@@ -78,7 +78,7 @@ $username =   $_SESSION['username']
             <a href="register.html"><i class='bx bx-user'></i></a>
             <a href="./php/viewproducts.php"><i class='bx bx-cart' ></i></a>
             <div class="icon-container">
-    <a href="./prescription.html"><i class="bx bxs-camera"></i></a>
+    <a href="./prescription.php"><i class="bx bxs-camera"></i></a>
     <div class="upload-option">
       <p>Upload Prescription</p>
       <!-- Add your upload prescription form or content here -->
