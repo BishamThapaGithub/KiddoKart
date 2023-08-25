@@ -14,9 +14,9 @@ if (isset($_POST['myorder'])) {
 
         if (mysqli_stmt_execute($stmt)) {
             // Successfully inserted into orders, now delete from cart
-            $deletequery = "DELETE FROM cart WHERE product_id = ? AND user_id = ?";
+            $deletequery = "DELETE FROM cart WHERE user_id = ?";
             $stmt_delete = mysqli_prepare($conn, $deletequery);
-            mysqli_stmt_bind_param($stmt_delete, "ii", $productid, $userid);
+            mysqli_stmt_bind_param($stmt_delete, "i", $userid);
 
             if (mysqli_stmt_execute($stmt_delete)) {
                 // Successful deletion from cart

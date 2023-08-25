@@ -106,9 +106,9 @@ $username =   $_SESSION['username']
     <!-- -->
     <section class="home">
         <div class="home-text">
-            <h1>KIDs Pharmacy</h1>
-            <p style="color: aliceblue; font-style: italic; font-size: larger;">Medicine comes with hope: the hope of
-                having a healthy child, the hope of being able to raise your family.
+            <h1>KIDDO KART</h1>
+            <p style="color: aliceblue; font-style: italic; font-size: larger;"> Where Every Click Unwraps Joy! Discover a world of delightfully curated toys, clothing, 
+            and accessories for kids that spark imagination and create smiles.
             </p>
             <a href="#" class="main-btn">Shop Now <i class='bx bx-right-arrow-alt'></i></a>
         </div>
