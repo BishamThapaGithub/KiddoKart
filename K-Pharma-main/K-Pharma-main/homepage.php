@@ -49,17 +49,7 @@ $username =   $_SESSION['username']
     }
   }
 
-  .upload-option {
-    display: none;
-    position: absolute;
-    top: 30px; /* Adjust as needed */
-    left: 0;
-    width: 180px; /* Adjust as needed */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 5px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  }
+
 </style>
 </head>
 
@@ -78,11 +68,8 @@ $username =   $_SESSION['username']
             <a href="register.html"><i class='bx bx-user'></i></a>
             <a href="./php/viewproducts.php"><i class='bx bx-cart' ></i></a>
             <div class="icon-container">
-    <a href="./prescription.php"><i class="bx bxs-camera"></i></a>
-    <div class="upload-option">
-      <p>Upload Prescription</p>
-      <!-- Add your upload prescription form or content here -->
-    </div>
+    <a href="#"><i class='bx bx-menu'></i></a>
+    
   </div>
         </div>
         <div class="cart" id="carts">
