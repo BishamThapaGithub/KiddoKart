@@ -299,10 +299,6 @@ if (isset($_GET['delete'])) {
                <br>
                <input type="number" placeholder="Enter Price" name="product_price" class="box">
                <br>
-               Product Description:
-               <br>
-               <input type="text" placeholder="Enter Description" name="product_price" class="box">
-               <br>
                Insert Picture Of Product:
                <br>
                <input type="file" accept="image/jpg, image/png, image/jpeg" name="product_img" class="box">
@@ -325,7 +321,7 @@ if (isset($_GET['delete'])) {
                         <th>S.N</th>
                         <th>product image</th>
                         <th>product name</th>
-                        <th>description</th>
+                        
                         <th>product price</th>
                         <th>Categories</th>
                         <th>action</th>
@@ -349,7 +345,7 @@ if (isset($_GET['delete'])) {
                            <?php echo $row['c_title']; ?>
                         </td>
                         <td>
-                           <a href="./update.php?edit=<?php echo $row['c_id']; ?>" class="btn" style="width: fit-content;">
+                           <a href="./update.php?edit=<?php echo $row['id']; ?>" class="btn" style="width: fit-content;">
                               edit
                            </a>
                            <a href="addproduct.php?delete=<?php echo $row['c_id']; ?>" class="btn"
