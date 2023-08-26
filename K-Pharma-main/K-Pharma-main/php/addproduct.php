@@ -7,13 +7,14 @@ if (isset($_POST['add_product'])) {
    $product_image = $_FILES['product_img']['name'];
    $product_image_tmp_name = $_FILES['product_img']['tmp_name'];
    $product_image_folder = 'upload_image/' . $product_image;
+   $Description = $_POST['description'];
 
 
 
    if (empty($product_name) || empty($product_price) || empty($product_image)) {
       $message[] = 'please fill out all';
    } else {
-      $insert = "INSERT INTO products(c_id,product_name, product_price, product_img) VALUES('$category_id','$product_name', '$product_price', '$product_image')";
+      $insert = "INSERT INTO products(c_id,product_name, product_price, product_img,descriptions) VALUES('$category_id','$product_name', '$product_price', '$product_image','$Description')";
       $upload = mysqli_query($conn, $insert);
       if ($upload) {
          move_uploaded_file($product_image_tmp_name, $product_image_folder);
@@ -30,7 +31,7 @@ if (isset($_POST['add_product'])) {
 <?php
 if (isset($_GET['delete'])) {
    $id = $_GET['delete'];
-   $deleteQuery = "DELETE FROM products WHERE c_id = ?";
+   $deleteQuery = "DELETE FROM products WHERE id = ?";
 
    $stmt = mysqli_prepare($conn, $deleteQuery);
    mysqli_stmt_bind_param($stmt, "i", $id);
@@ -303,6 +304,9 @@ if (isset($_GET['delete'])) {
                <br>
                <input type="file" accept="image/jpg, image/png, image/jpeg" name="product_img" class="box">
                <br>
+               Description
+               <input type="text" name="description" class="box" >
+               <br>
                <input type="submit" class="btn" name="add_product" value="add product">
             </form>
 
@@ -323,6 +327,7 @@ if (isset($_GET['delete'])) {
                         <th>product name</th>
                         
                         <th>product price</th>
+                        <th>Description</th>
                         <th>Categories</th>
                         <th>action</th>
 
@@ -342,13 +347,16 @@ if (isset($_GET['delete'])) {
                            <?php echo $row['product_price']; ?>/-
                         </td>
                         <td>
+                           <?php  echo $row['descriptions']?>
+                        </td>
+                        <td>
                            <?php echo $row['c_title']; ?>
                         </td>
                         <td>
                            <a href="./update.php?edit=<?php echo $row['id']; ?>" class="btn" style="width: fit-content;">
                               edit
                            </a>
-                           <a href="addproduct.php?delete=<?php echo $row['c_id']; ?>" class="btn"
+                           <a href="addproduct.php?delete=<?php echo $row['id']; ?>" class="btn"
                               style="width: fit-content;">
                               Delete
                            </a>

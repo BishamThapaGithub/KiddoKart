@@ -225,7 +225,7 @@ $username =   $_SESSION['username']
                         </h2>
                     </div>
                     <div class="description">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo soluta nisi necessitatibus</p>
+                        <p> <?php echo $row['descriptions'] ?></p>
                     </div>
                     <div>
                         <span class="price">
@@ -239,7 +239,7 @@ $username =   $_SESSION['username']
                             <i class='bx bx-shopping-bag add-cart'> ADD TO CART</i>
                         </button> -->
                         <form action="test.php" method="POST">
-                        <input type="" name="productid" value="<?php echo $row['id']?>">
+                        <input type="hidden" name="productid" value="<?php echo $row['id']?>">
                         <input type="number" value="1" name="quantity" min="1" max="12">
 
                             <input type="submit" value="addtocart" name="gotocart">
