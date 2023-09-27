@@ -21,7 +21,9 @@ if (isset($_POST['update_product'])) {
 
       if ($upload) {
          move_uploaded_file($product_image_tmp_name, $product_image_folder);
-         header('location:addproduct.php');
+         echo "<script> alert('Product Has Been Updated'); </script>";
+         $_SESSION['success_message'] = "Product Updated Successfully";
+         echo '<script>setTimeout(function(){ window.location.href = "addproduct.php"; }, 2000);</script>';
       } else {
          $message[] = 'please fill out all!';
       }
@@ -40,6 +42,27 @@ if (isset($_POST['update_product'])) {
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="./product.css">
+   <style>
+   /* Style for the success message */
+   .success-message {
+      color: #ffffff; 
+      background-color: #4caf50; 
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+   }
+
+   /* Style for the error message */
+   .error-message {
+      color: #ffffff; 
+      background-color: #f44336; 
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+   }
+</style>
 </head>
 
 <body>
@@ -53,7 +76,13 @@ if (isset($_POST['update_product'])) {
    ?>
 
    <div class="container">
-
+   <?php
+               if (isset($_SESSION['success_message'])) {
+                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+                  // Clear the success message after displaying it
+                  unset($_SESSION['success_message']);
+               }
+               ?>
 
       <div class="admin-product-form-container centered">
 

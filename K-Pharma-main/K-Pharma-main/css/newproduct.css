@@ -67,7 +67,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 3rem;
-    width: 80%;
+    width: 100%;
   }
   .product-box{
     display: flex;

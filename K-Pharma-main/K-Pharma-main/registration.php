@@ -1,4 +1,44 @@
 <!DOCTYPE html>
+
+<?php
+// Check if the form is submitted
+include_once('./php/connection.php');
+session_start();
+if (isset($_POST['submit'])) {
+    // Collect information from the registration form
+    $fullname = mysqli_real_escape_string($conn, $_POST['Username']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($conn, $_POST['Re-Enterpassword']);
+    $age = mysqli_real_escape_string($conn, $_POST['age']);
+    $user_role = 'user';
+
+    // Validate that all fields are filled
+    if (empty($fullname) || empty($email) || empty($password) || empty($cpassword) || empty($age)) {
+        echo "Please fill in all fields";
+    } else {
+        // Check if the passwords match
+        if ($password !== $cpassword) {
+            echo "Passwords do not match";
+        } else {
+            // Insert data into the database
+            $sql = "INSERT INTO users (Username, Email, Password, Age, UserRole) VALUES ('$fullname', '$email', '$password', '$age', '$user_role')";
+            $query = $conn->query($sql);
+
+            if (!$query) {
+                echo "Data insertion failed: " . mysqli_error($conn);
+            } else {
+                echo "<script> alert('Registration sucessfull '); </script>";
+                // Redirect to the login page
+                $_SESSION['success_message'] = "Registration successfull!";
+                echo '<script>setTimeout(function(){ window.location.href = "signin.html"; }, 2000);</script>';
+               
+               exit();
+            }
+        }
+    }
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +47,37 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/register.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
-    
+    <link rel="stylesheet" href="./css/popup.css">
+    <style>
+      /* Style for the success message */
+      .success-message {
+         color: green;
+         background-color: #e2f1dd;
+         padding: 10px;
+         border-radius: 5px;
+         margin-bottom: 20px;
+         text-align: center;
+      }
+
+      .error-message {
+         color: green;
+         background-color: #e2f1dd;
+         padding: 10px;
+         border-radius: 5px;
+         margin-bottom: 20px;
+         text-align: center;
+      }
+   </style>
 </head>
 <body><div class="login-card-container">
     <div class="login-card">
+    <?php
+               if (isset($_SESSION['success_message'])) {
+                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+                  // Clear the success message after displaying it
+                  unset($_SESSION['success_message']);
+               }
+               ?>
         <div class="login-card-logo">
             <img src="./image/logo.jpg " alt="logo">
         </div>
@@ -18,7 +85,7 @@
             <h1>Register Here</h1>
             
         </div>
-        <form class="register" action="./php/register.php" method="post" onsubmit="return validation()">
+        <form class="register" action="" method="post" onsubmit="return validation()">
             <label> Username:</label>
         <br>
         <input type="text" name="Username" id="user" class="form-control"
@@ -58,9 +125,12 @@
        
       
             
-                 <button type="submit" name="submit" value="submit" >Register</button>
+                 <button type="submit" name="submit" value="submit">Register</button>
                  <div class="login-card-footer">
                     already have an account? <a href="signin.html">Login Here</a>
+                </div>
+               
+                    
                 </div>
         </form>
         
@@ -124,6 +194,7 @@
                 
             }
         </script>
+        <script src="./javascript/popop.js"></script>
     </body>
    
             

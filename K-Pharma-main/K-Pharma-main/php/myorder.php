@@ -145,16 +145,16 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<
             </h1>
 
             <form action="order.php" method="POST">
-                <h1>Confirm your order</h1>
-                <br>
-                <?php if (!empty($productRows)) { ?>
-                    <input type="hidden" name="productid" value="<?php echo $productRows[0]['product_id']; ?>">
-                    <!-- You can use $productRows[0] or any other index based on your requirements -->
-                    <input type="hidden" name="quantity" value="<?php echo $productRows[0]['cart_quantity']; ?>">
-                <?php } ?>
-                <br>
-                <input type="submit" value="Confirm Order" name="myorder">
-            </form>
+    <h1>Confirm your order</h1>
+    <br>
+    <?php foreach ($productRows as $index => $product) { ?>
+        <input type="hidden" name="productid[]" value="<?php echo $product['product_id']; ?>">
+        <input type="hidden" name="quantity[]" value="<?php echo $product['cart_quantity']; ?>">
+    <?php } ?>
+    <br>
+    <input type="submit" value="Confirm Order" name="myorder">
+</form>
+
 
 
             </section> <!-- main -->

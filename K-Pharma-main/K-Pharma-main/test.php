@@ -19,8 +19,8 @@ session_start();
 
                     
                     // Perform actual purchase logic or redirect to a purchase page
-                    header("location:./php/myorder.php?id=$rid&uname=$username");
-
+                    // header("location:./php/myorder.php?id=$rid&uname=$username");
+                    header("location:homepage.php");
                 } else {
                     header('location:signin.html');
                 }

@@ -18,8 +18,9 @@ if (isset($_POST['add_product'])) {
       $upload = mysqli_query($conn, $insert);
       if ($upload) {
          move_uploaded_file($product_image_tmp_name, $product_image_folder);
-         $message[] = 'new product added successfully';
-         header('location:addproduct.php');
+         echo "<script> alert('Product Has Been added'); </script>";
+         $_SESSION['success_message'] = "Product Added Successfully";
+         echo '<script>setTimeout(function(){ window.location.href = "addproduct.php"; }, 2000);</script>';
       } else {
          $message[] = 'could not add the product';
       }
@@ -37,7 +38,10 @@ if (isset($_GET['delete'])) {
    mysqli_stmt_bind_param($stmt, "i", $id);
 
    if (mysqli_stmt_execute($stmt)) {
-      header('location:addproduct.php');
+      echo "<script> alert('Product Has Been Deleted'); </script>";
+         $_SESSION['success_message'] = "Product Deleted Successfully";
+         echo '<script>setTimeout(function(){ window.location.href = "addproduct.php"; }, 2000);</script>';
+      
    } else {
       echo "Error deleting product: " . mysqli_error($conn);
    }
@@ -83,6 +87,28 @@ if (isset($_GET['delete'])) {
    <link rel="stylesheet" href="app.css">
    <!-- css for product -->
    <link rel="stylesheet" href="./product.css">
+   <style>
+   /* Style for the success message */
+   .success-message {
+      color: #ffffff; 
+      background-color: #4caf50; 
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+   }
+
+   /* Style for the error message */
+   .error-message {
+      color: #ffffff; 
+      background-color: #f44336; 
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+   }
+</style>
+
 </head>
 
 <body>
@@ -267,8 +293,15 @@ if (isset($_GET['delete'])) {
             </svg>
          </div> <!-- sidebar__theme-switcher -->
       </div> <!-- sidebar -->
-
+      
       <div class="form-container">
+      <?php
+               if (isset($_SESSION['success_message'])) {
+                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+                  // Clear the success message after displaying it
+                  unset($_SESSION['success_message']);
+               }
+               ?>
 
          <div class="admin-product-form-container">
 

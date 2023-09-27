@@ -65,10 +65,10 @@ $username =   $_SESSION['username']
         </ul>
         <div class="navicon">
 
-            <a href="register.html"><i class='bx bx-user'></i></a>
-            <a href="./php/viewproducts.php"><i class='bx bx-cart' ></i></a>
+            <a href="registration.php"><i class='bx bx-user'></i></a>
+            <a href="./php/myorder.php"><i class='bx bx-cart' ></i></a>
             <div class="icon-container">
-    <a href="#"><i class='bx bx-menu'></i></a>
+    <a href="./php/viewproducts.php"><i class='bx bx-menu'></i></a>
     
   </div>
         </div>
@@ -84,20 +84,8 @@ $username =   $_SESSION['username']
                 <div class="total-price">$0</div>
             </div>
 
-            <!-- <button type="button" class="btn-buy buy-now" >Buy now</button> -->
-            <!-- <form method="post">
-                <button type="submit" name="buy-nows" class="btn-buy buy-now">Buy now</button>
-            </form>
-            <?php
-            // if (isset($_POST['buy-nows'])) {
-            //     if (isset($_SESSION['username'])) {
-            //         // Perform actual purchase logic or redirect to a purchase page
-            //         header("location:./php/viewproducts.php?id=$rid&uname=$username");
-            //     } else {
-            //         header('location:signin.html');
-            //     }
-            // }
-            ?> -->
+           
+           
             <i class='bx bx-x' id="close-cart"> </i>
         </div>
 
@@ -388,6 +376,7 @@ $username =   $_SESSION['username']
     <script src="./javascript/newscript.js"></script>
     <!-- <script src="./javascript/prodduct.js"></script> -->
     <script src="./javascript/scroll.js"></script>
+    <script src="./javascript/jquery.js"></script>
 </body>
 
 </html>

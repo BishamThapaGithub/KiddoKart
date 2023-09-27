@@ -139,7 +139,7 @@ $username = $_SESSION['username']
             <ul>
                 <li id="main-header__logo">
                     <a href="./admindb.html">
-                        <h1>KidsPharma</h1>
+                        <h1>Kiddo Kart</h1>
                     </a>
                 </li>
 
@@ -171,43 +171,22 @@ $username = $_SESSION['username']
                 <ul>
                     <li class="menu-heading"><span>Manage</span></li>
                     <li>
-                        <a href="./admindb.html" class="active">
+                        <a href="#" class="active">
                             <svg>
                                 <use xlink:href="#icon-dashboard"></use>
                             </svg>
-                            <span>Dashboard</span>
+                            <span>My Orders</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="./addproduct.php">
-                            <svg>
-                                <use xlink:href="#icon-add"></use>
-                            </svg>
-                            <span>Add Product</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="prescriptionshow.php">
-                            <svg>
-                                <use xlink:href="#icon-plugins"></use>
-                            </svg>
-                            <span>Prescriptions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./userlist.php">
-                            <svg>
-                                <use xlink:href="#icon-users"></use>
-                            </svg>
-                            <span>Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="logout.php">
-                        <i class='bx bxs-log-out' ></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
+                   
+                       
+                                  
+                                <button class="nav-item logout" type="logout" name="logout">Logout</button>     
+                           
+                            <?php
+                            if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<script> location.href='../signin.html'; </script>"; }
+
+                                ?>
 
             </nav>
 
@@ -270,7 +249,7 @@ $username = $_SESSION['username']
                                     <?php echo $row['product_name']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $row['product_price']; ?>
+                                    <?php echo "$".$row['product_price']; ?>
                                 </td>
                                 <td>
                                     <?php echo $row['order_quantity']; ?>
