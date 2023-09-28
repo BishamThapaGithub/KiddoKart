@@ -29,6 +29,7 @@ $username =   $_SESSION['username']
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
   .icon-container {
     display: inline-block;
@@ -180,7 +181,7 @@ $username =   $_SESSION['username']
     </section>
     <!--Pharmacies partnered with-->
  
-
+                   
     <?php
     while ($row = mysqli_fetch_assoc($all_product)) {
         $current_category = $row['c_title'];
@@ -226,13 +227,11 @@ $username =   $_SESSION['username']
                         <button class="add-cart">
                             <i class='bx bx-shopping-bag add-cart'> ADD TO CART</i>
                         </button> -->
-                        <form action="test.php" method="POST">
-                        <input type="hidden" name="productid" value="<?php echo $row['id']?>">
-                        <input type="number" value="1" name="quantity" min="1" max="12">
-
-                            <input type="submit" value="addtocart" name="gotocart">
-                           
-                        </form>
+                        <form class="product-form" action="" method="POST">
+            <input type="hidden" class="productid" name="productid" value="<?php echo $row['id'] ?>">
+            <input type="number" class="quantity" value="1" name="quantity" min="1" max="12">
+            <input type="submit" value="Add to Cart" class="gotocart" name="gotocart">
+        </form>
                     </div>
                 </div>
                 
@@ -376,7 +375,32 @@ $username =   $_SESSION['username']
     <script src="./javascript/newscript.js"></script>
     <!-- <script src="./javascript/prodduct.js"></script> -->
     <script src="./javascript/scroll.js"></script>
-    <script src="./javascript/jquery.js"></script>
+    
+
+
+
 </body>
 
 </html>
+
+
+<script>
+     $(document).ready(function () {
+    $(".gotocart").on("click", function (e) {
+        e.preventDefault();
+        var form = $(this).closest('.product-form'); // Find the parent form
+        var quantity = form.find('.quantity').val(); // Find the quantity input within the form
+        var productid = form.find('.productid').val(); // Find the productid input within the form
+
+        $.ajax({
+            url: "test.php",
+            type: "POST",
+            data: { quantity: quantity, productid: productid },
+            success: function (response) {
+                alert("Added to Cart!");
+            }
+        });
+    });
+});
+
+</script>
