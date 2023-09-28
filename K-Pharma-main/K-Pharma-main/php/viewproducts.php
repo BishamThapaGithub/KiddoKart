@@ -39,6 +39,11 @@ $username = $_SESSION['username']
     <link rel="stylesheet" href="app.css">
 
     <link rel="stylesheet" href="./product.css">
+    <style>
+        .nav-item logout:hover {
+            background-color: #cc0000;
+        }
+    </style>
 </head>
 
 <body>
@@ -166,27 +171,54 @@ $username = $_SESSION['username']
                 </svg>
                 <span>MENU</span>
             </button>
-
             <nav id="sidebar__nav">
-                <ul>
-                    <li class="menu-heading"><span>Manage</span></li>
+            <ul>
+               <li class="menu-heading"><span>Manage</span></li>
+               <li>
+                  <a href="admindb.php">
+                     <svg>
+                        <use xlink:href="#icon-dashboard"></use>
+                     </svg>
+                     <span>Dashboard</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="./addproduct.php">
+                     <svg>
+                        <use xlink:href="#icon-add"></use>
+                     </svg>
+                     <span>Add Product</span>
+                  </a>
+               </li>
+            
+               <li>
+                  <a href="userlist.php">
+                     <svg>
+                        <use xlink:href="#icon-users"></use>
+                     </svg>
+                     <span>Users</span>
+                  </a>
+               </li>
+    
                     <li>
                         <a href="#" class="active">
                             <svg>
                                 <use xlink:href="#icon-dashboard"></use>
                             </svg>
-                            <span>My Orders</span>
+                            <span>Orders</span>
                         </a>
                     </li>
                    
                        
-                                  
-                                <button class="nav-item logout" type="logout" name="logout">Logout</button>     
-                           
+                    <!-- <i class='bx bx-arrow-back'></i>
+                                <button class="nav-item logout" type="logout" name="logout" style=" border: 2px solid black;
+                                background-color: wheat;
+                                padding: 10px; ">Logout</button>     
+
                             <?php
                             if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<script> location.href='../signin.html'; </script>"; }
 
-                                ?>
+                                ?> -->
 
             </nav>
 
@@ -205,7 +237,7 @@ $username = $_SESSION['username']
             <h1>Order List</h1>
             <div class="admin-product-form-container">
                 <?php
-                $user_id = $_SESSION['ID'];
+                // $user_id = $_SESSION['ID'];
                 // $select = "SELECT c.*, p.*, u.Username FROM orders c
                 //            INNER JOIN products p ON p.id = c.product_id
                 //            INNER JOIN users u ON u.ID = c.users_id"; // Join users table to get customer name

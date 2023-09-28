@@ -1,4 +1,12 @@
 <?php
+
+
+session_start();
+$_SESSION['user_role'] = 'User';
+$username = $_SESSION['username']
+?>
+
+<?php
 include_once('connection.php');
 if (isset($_POST['add_product'])) {
    $category_id = $_POST['c_id'];
@@ -8,7 +16,7 @@ if (isset($_POST['add_product'])) {
    $product_image_tmp_name = $_FILES['product_img']['tmp_name'];
    $product_image_folder = 'upload_image/' . $product_image;
    $Description = $_POST['description'];
-
+   
 
 
    if (empty($product_name) || empty($product_price) || empty($product_image)) {
@@ -218,7 +226,7 @@ if (isset($_GET['delete'])) {
          </ul>
 
          <a href="#">
-            <span>Welcome__Bisham</span>
+         <span><?php echo $username ?></span>
             <svg>
                <use xlink:href="#icon-user"></use>
             </svg>
@@ -241,7 +249,7 @@ if (isset($_GET['delete'])) {
             <ul>
                <li class="menu-heading"><span>Manage</span></li>
                <li>
-                  <a href="">
+                  <a href="admindb.php">
                      <svg>
                         <use xlink:href="#icon-dashboard"></use>
                      </svg>
@@ -266,11 +274,11 @@ if (isset($_GET['delete'])) {
                   </a>
                </li>
                <li>
-                  <a href="#">
+                  <a href="viewproducts.php">
                      <svg>
                         <use xlink:href="#icon-settings"></use>
                      </svg>
-                     <span><a href="viewproducts.php">View Orders</a></span>
+                     <span>Orders</span>
                   </a>
                </li>
 

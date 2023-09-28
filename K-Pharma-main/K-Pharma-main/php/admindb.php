@@ -1,3 +1,10 @@
+<?php
+
+include_once('connection.php');
+session_start();
+$_SESSION['user_role'] = 'User';
+$username = $_SESSION['username']
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,7 +138,7 @@
 			<ul>
 				<li id="main-header__logo">
 					<a href="index.html">
-						<h1>KidsPharma</h1>
+						<h1>Kiddo Kart</h1>
 					</a>
 				</li>
 				
@@ -140,7 +147,7 @@
 			</ul>
 
 			<a href="#">
-				<span>Welcome__Bisham</span>
+			<span><?php echo $username ?></span>
 				<svg>
 					<use xlink:href="#icon-user"></use>
 				</svg>
@@ -163,7 +170,7 @@
 				<ul>
 					<li class="menu-heading"><span>Manage</span></li>
 					<li>
-						<a href="index.html" class="active">
+						<a href="#" class="active">
 							<svg>
 								<use xlink:href="#icon-dashboard"></use>
 							</svg>
@@ -178,14 +185,7 @@
 							<span>Add Product</span>
 						</a>
 					</li>
-					<li>
-						<a href="./prescriptionshow.php">
-							<svg>
-								<use xlink:href="#icon-plugins"></use>
-							</svg>
-							<span>Prescriptions</span>
-						</a>
-					</li>
+					
 					<li>
 						<a href="./userlist.php">
 							<svg>

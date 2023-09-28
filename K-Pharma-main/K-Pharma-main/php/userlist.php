@@ -3,6 +3,7 @@
 include_once('connection.php');
 session_start();
 $_SESSION['user_role'] = 'User';
+$username = $_SESSION['username']
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +140,7 @@ $_SESSION['user_role'] = 'User';
             <ul>
                 <li id="main-header__logo">
                     <a href="./admindb.html">
-                    <h1>KidsPharma</h1>
+                    <h1>Kiddo Kart</h1>
                     </a>
                 </li>
 
@@ -147,7 +148,7 @@ $_SESSION['user_role'] = 'User';
             </ul>
 
             <a href="#">
-                <span>Welcome__Bisham</span>
+            <span><?php echo $username ?></span>
                 <svg>
                     <use xlink:href="#icon-user"></use>
                 </svg>
@@ -170,7 +171,7 @@ $_SESSION['user_role'] = 'User';
                 <ul>
                     <li class="menu-heading"><span>Manage</span></li>
                     <li>
-                        <a href="./admindb.html" class="active">
+                        <a href="admindb.php">
                             <svg>
                                 <use xlink:href="#icon-dashboard"></use>
                             </svg>
@@ -185,16 +186,9 @@ $_SESSION['user_role'] = 'User';
                             <span>Add Product</span>
                         </a>
                     </li>
+                
                     <li>
-                        <a href="prescriptionshow.php">
-                            <svg>
-                                <use xlink:href="#icon-plugins"></use>
-                            </svg>
-                            <span>Prescriptions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
+                        <a href="#" class="active">
                             <svg>
                                 <use xlink:href="#icon-users"></use>
                             </svg>
@@ -202,11 +196,12 @@ $_SESSION['user_role'] = 'User';
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                    <li>
+                        <a href="viewproducts.php" >
                             <svg>
-                                <use xlink:href="#icon-settings"></use>
+                                <use xlink:href="#icon-dashboard"></use>
                             </svg>
-                            <span>Settings</span>
+                            <span>Orders</span>
                         </a>
                     </li>
 
