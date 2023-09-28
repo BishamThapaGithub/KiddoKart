@@ -73,7 +73,7 @@ $username = $_SESSION['username']
                 style="background-color: #f44336; border-radius: 50%; padding: 4px 8px; font-size: 14px;margin: 0; }"
                 class="cart-quantity">0</h1>
             <div class="icon-container">
-                <a href="./php/viewproducts.php"><i class='bx bx-menu'></i></a>
+                <a href="#"><i class='bx bx-menu'></i></a>
 
             </div>
         </div>

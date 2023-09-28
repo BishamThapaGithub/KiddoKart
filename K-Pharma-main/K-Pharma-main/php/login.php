@@ -17,7 +17,7 @@ session_start();
     if ($row['UserRole'] == "Admin") {
       $_SESSION['username'] = $row['Username'];
  
-      header('Location: admindb.html');
+      header('Location: admindb.php');
       exit();
     } else if($row['UserRole'] == "user") {
       

@@ -224,15 +224,24 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include(
                 <?php echo "$".$total; ?>
             </h1>
 
-            <form action="order.php" method="POST" class="confirm-order">
-    <h1>Confirm your order</h1>
+            <form action="order.php" method="POST" style="margin-top: 40px; text-align:center; height:200px; width: 280px;" >
+    <h1>Place order</h1>
     <br>
     <?php foreach ($productRows as $index => $product) { ?>
         <input type="hidden" name="productid[]" value="<?php echo $product['product_id']; ?>">
         <input type="hidden" name="quantity[]" value="<?php echo $product['cart_quantity']; ?>">
     <?php } ?>
     <br>
-    <input type="submit" value="Confirm Order" name="myorder" class="form-container">
+    <input type="submit" value="Confirm Order" name="myorder" style=" background-color: green;
+            color: #ffffff;
+            height: 3rem;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 1px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top:-200px;">
+            
 </form>
 
 
