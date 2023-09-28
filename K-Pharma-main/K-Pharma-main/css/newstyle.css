@@ -187,7 +187,7 @@ header.sticky{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px,auto));
     align-items: center;
-    gap: 3rem;
+    gap: 5rem;
     margin: 5rem;
 
 }
