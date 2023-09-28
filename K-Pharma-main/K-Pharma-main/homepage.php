@@ -8,9 +8,9 @@ $all_product = $conn->query($sql);
 $previous_category = null;
 session_start();
 
-$username =   $_SESSION['username']
+$username = $_SESSION['username']
 
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,27 +31,28 @@ $username =   $_SESSION['username']
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-  .cart-quantity {
-    display: inline-block;
-    position: relative;
-    animation: zoomInOut 2s infinite;
-  }
+        .cart-quantity {
+            display: inline-block;
+            position: relative;
+            animation: zoomInOut 2s infinite;
+        }
 
-  /* .icon-container:hover .upload-option {
+        /* .icon-container:hover .upload-option {
     display: block;
   } */
 
-  @keyframes zoomInOut {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
+        @keyframes zoomInOut {
 
+            0%,
+            100% {
+                transform: scale(1);
+            }
 
-</style>
+            50% {
+                transform: scale(1.2);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -67,12 +68,14 @@ $username =   $_SESSION['username']
         <div class="navicon">
 
             <a href="registration.php"><i class='bx bx-user'></i></a>
-            <a href="./php/myorder.php" style="margin-right: 5px;"><i class='bx bx-cart' ></i></a>
-            <h1 id="increase" style="background-color: #f44336; border-radius: 50%; padding: 4px 8px; font-size: 14px;margin: 0; }" class="cart-quantity">0</h1>
+            <a href="./php/myorder.php" style="margin-right: 5px;"><i class='bx bx-cart'></i></a>
+            <h1 id="increase"
+                style="background-color: #f44336; border-radius: 50%; padding: 4px 8px; font-size: 14px;margin: 0; }"
+                class="cart-quantity">0</h1>
             <div class="icon-container">
-    <a href="./php/viewproducts.php"><i class='bx bx-menu'></i></a>
-    
-  </div>
+                <a href="./php/viewproducts.php"><i class='bx bx-menu'></i></a>
+
+            </div>
         </div>
         <div class="cart" id="carts">
             <h2 class="cart-title">Your cart</h2>
@@ -86,8 +89,8 @@ $username =   $_SESSION['username']
                 <div class="total-price">$0</div>
             </div>
 
-           
-           
+
+
             <i class='bx bx-x' id="close-cart"> </i>
         </div>
 
@@ -97,8 +100,9 @@ $username =   $_SESSION['username']
     <section class="home">
         <div class="home-text">
             <h1>KIDDO KART</h1>
-            <p style="color: aliceblue; font-style: italic; font-size: larger;"> Where Every Click Unwraps Joy! Discover a world of delightfully curated toys, clothing, 
-            and accessories for kids that spark imagination and create smiles.
+            <p style="color: aliceblue; font-style: italic; font-size: larger;"> Where Every Click Unwraps Joy! Discover
+                a world of delightfully curated toys, clothing,
+                and accessories for kids that spark imagination and create smiles.
             </p>
             <a href="#" class="main-btn">Shop Now <i class='bx bx-right-arrow-alt'></i></a>
         </div>
@@ -181,8 +185,8 @@ $username =   $_SESSION['username']
         </div>
     </section>
     <!--Pharmacies partnered with-->
- 
-                   
+
+
     <?php
     while ($row = mysqli_fetch_assoc($all_product)) {
         $current_category = $row['c_title'];
@@ -215,7 +219,9 @@ $username =   $_SESSION['username']
                         </h2>
                     </div>
                     <div class="description">
-                        <p> <?php echo $row['descriptions'] ?></p>
+                        <p>
+                            <?php echo $row['descriptions'] ?>
+                        </p>
                     </div>
                     <div>
                         <span class="price">
@@ -224,18 +230,18 @@ $username =   $_SESSION['username']
                     </div>
 
                     <div>
-<!--                    
+                        <!--                    
                         <button class="add-cart">
                             <i class='bx bx-shopping-bag add-cart'> ADD TO CART</i>
                         </button> -->
                         <form class="product-form" action="" method="POST">
-            <input type="hidden" class="productid" name="productid" value="<?php echo $row['id'] ?>">
-            <input type="number" class="quantity" value="1" name="quantity" min="1" max="12">
-            <input type="submit" value="Add to Cart" class="gotocart" name="gotocart">
-        </form>
+                            <input type="hidden" class="productid" name="productid" value="<?php echo $row['id'] ?>">
+                            <input type="number" class="quantity" value="1" name="quantity" min="1" max="12">
+                            <input type="submit" value="Add to Cart" class="gotocart" name="gotocart">
+                        </form>
                     </div>
                 </div>
-                
+
 
                 <?php
     }
@@ -243,7 +249,7 @@ $username =   $_SESSION['username']
 
 
 
-        
+
 
 
             <?php
@@ -299,7 +305,7 @@ $username =   $_SESSION['username']
                 <h5>S.D. Pharmacy</h5>
                 <h4>Kalimati</h4>
             </div>
-        
+
             <div class="box">
                 <img src="./homeImage/p6.jpeg" alt="">
                 <h5>Siphal Pharmacy</h5>
@@ -367,7 +373,7 @@ $username =   $_SESSION['username']
     <script src="./javascript/newscript.js"></script>
     <!-- <script src="./javascript/prodduct.js"></script> -->
     <script src="./javascript/scroll.js"></script>
-    
+
 
 
 
@@ -377,25 +383,52 @@ $username =   $_SESSION['username']
 
 
 <script>
-     $(document).ready(function () {
+
+    let isLoggedIn = localStorage.getItem('isLoggedIn');
+    console.log(isLoggedIn, typeof isLoggedIn)
+    
+    
+    
+    $(document).ready(function () {
         var increment = 0;
-    $(".gotocart").on("click", function (e) {
-        increment++;
-        e.preventDefault();
-        
-        var form = $(this).closest('.product-form'); // Find the parent form
-        var quantity = form.find('.quantity').val(); // Find the quantity input within the form
-        var productid = form.find('.productid').val(); // Find the productid input within the form
-        $("#increase").text(increment);
-        $.ajax({
-            url: "test.php",
-            type: "POST",
-            data: { quantity: quantity, productid: productid },
-            success: function (response) {
-                alert("Added to Cart!");
+        console.log(parseInt(isLoggedIn))
+        $(".gotocart").on("click", function (e) {
+           
+            e.preventDefault();
+            
+            if (parseInt(isLoggedIn)) {
+            
+                increment++;
+                // The user is logged in
+                // console.log("User is logged in.");
+                var form = $(this).closest('.product-form'); // Find the parent form
+                var quantity = form.find('.quantity').val(); // Find the quantity input within the form
+                var productid = form.find('.productid').val(); // Find the productid input within the form
+                $("#increase").text(increment);
+                $.ajax({
+                    url: "test.php",
+                    type: "POST",
+                    data: { quantity: quantity, productid: productid },
+                    success: function (response) {
+                        alert("Added to Cart!");
+                    }
+                });
+            }
+            else {
+                var confirmSignIn = confirm("You are not logged in. Do you want to sign in?");
+                if (confirmSignIn) {
+                    console.log("chiran")
+                    // User clicked OK (Sign In)
+                    window.location.href = 'signin.html'; // Redirect to sign-in page
+                    
+                } else {
+                    // User clicked Cancel
+                    // Do nothing or handle it as needed
+                }
+
             }
         });
+
     });
-});
 
 </script>

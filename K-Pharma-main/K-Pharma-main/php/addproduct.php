@@ -209,7 +209,7 @@ if (isset($_GET['delete'])) {
          <ul>
             <li id="main-header__logo">
                <a href="index.html">
-                  <h1>KidsPharma</h1>
+                  <h1>Kiddo Kart</h1>
 
                </a>
             </li>
@@ -241,7 +241,7 @@ if (isset($_GET['delete'])) {
             <ul>
                <li class="menu-heading"><span>Manage</span></li>
                <li>
-                  <a href="" class="active">
+                  <a href="">
                      <svg>
                         <use xlink:href="#icon-dashboard"></use>
                      </svg>
@@ -249,21 +249,14 @@ if (isset($_GET['delete'])) {
                   </a>
                </li>
                <li>
-                  <a href="./addproduct.php">
+                  <a href="./addproduct.php" class="active">
                      <svg>
                         <use xlink:href="#icon-add"></use>
                      </svg>
                      <span>Add Product</span>
                   </a>
                </li>
-               <li>
-                  <a href="./prescriptionshow.php">
-                     <svg>
-                        <use xlink:href="#icon-plugins"></use>
-                     </svg>
-                     <span>Prescriptions</span>
-                  </a>
-               </li>
+            
                <li>
                   <a href="userlist.php">
                      <svg>
@@ -277,7 +270,7 @@ if (isset($_GET['delete'])) {
                      <svg>
                         <use xlink:href="#icon-settings"></use>
                      </svg>
-                     <span>Settings</span>
+                     <span><a href="viewproducts.php">View Orders</a></span>
                   </a>
                </li>
 

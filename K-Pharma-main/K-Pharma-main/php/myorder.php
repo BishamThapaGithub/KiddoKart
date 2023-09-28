@@ -127,7 +127,7 @@ $username = $_SESSION['username']
             </div>
         </div>
         <?php
-if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<script> location.href='../signin.html'; </script>"; }
+if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include('../test3.php'); echo "<script> location.href='../signin.html'; </script>"; }
 
 ?>
         <div class="admin-product-form-container">

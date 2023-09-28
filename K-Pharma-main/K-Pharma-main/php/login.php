@@ -12,7 +12,7 @@ session_start();
   $result = mysqli_query($conn, $select);
 
   if (mysqli_num_rows($result) > 0) {
-    echo "sulav";
+    
     $row = mysqli_fetch_array($result);
     if ($row['UserRole'] == "Admin") {
       $_SESSION['username'] = $row['Username'];
@@ -20,11 +20,15 @@ session_start();
       header('Location: admindb.html');
       exit();
     } else if($row['UserRole'] == "user") {
+      
+      include("../test2.php");
+      
+      
       $_SESSION['username'] = $row['Username'];
       $_SESSION['ID'] = $row['ID'];
-
- 
-      header('Location:../homepage.php');
+      echo $row['UserRole'];
+      
+      echo "<script> window.location.href= '../homepage.php';</script>";
       exit();
       
      
