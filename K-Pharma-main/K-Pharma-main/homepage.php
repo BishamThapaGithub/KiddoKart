@@ -31,15 +31,15 @@ $username =   $_SESSION['username']
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-  .icon-container {
+  .cart-quantity {
     display: inline-block;
     position: relative;
     animation: zoomInOut 2s infinite;
   }
 
-  .icon-container:hover .upload-option {
+  /* .icon-container:hover .upload-option {
     display: block;
-  }
+  } */
 
   @keyframes zoomInOut {
     0%, 100% {
@@ -67,7 +67,8 @@ $username =   $_SESSION['username']
         <div class="navicon">
 
             <a href="registration.php"><i class='bx bx-user'></i></a>
-            <a href="./php/myorder.php"><i class='bx bx-cart' ></i></a>
+            <a href="./php/myorder.php" style="margin-right: 5px;"><i class='bx bx-cart' ></i></a>
+            <h1 id="increase" style="background-color: #f44336; border-radius: 50%; padding: 4px 8px; font-size: 14px;margin: 0; }" class="cart-quantity">0</h1>
             <div class="icon-container">
     <a href="./php/viewproducts.php"><i class='bx bx-menu'></i></a>
     
@@ -386,12 +387,15 @@ $username =   $_SESSION['username']
 
 <script>
      $(document).ready(function () {
+        var increment = 0;
     $(".gotocart").on("click", function (e) {
+        increment++;
         e.preventDefault();
+        
         var form = $(this).closest('.product-form'); // Find the parent form
         var quantity = form.find('.quantity').val(); // Find the quantity input within the form
         var productid = form.find('.productid').val(); // Find the productid input within the form
-
+        $("#increase").text(increment);
         $.ajax({
             url: "test.php",
             type: "POST",
