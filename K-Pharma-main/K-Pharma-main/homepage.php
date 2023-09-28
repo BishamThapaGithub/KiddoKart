@@ -133,9 +133,9 @@ $username =   $_SESSION['username']
         <div class="feature-content">
             <div class="row">
                 <div class="row-img">
-                    <img src="./homeImage/f1.jpg" alt="" id="scrollTrigger1">
+                    <img src="./image/Toys Section.webp" alt="" id="scrollTrigger1">
                 </div>
-                <h4 id="scrollTrigger1">Equipments</h4>
+                <h4 id="scrollTrigger1">Toys</h4>
                 <script>
                     document.getElementById("scrollTrigger1").addEventListener("click", function () {
                         const section = document.getElementById("equipments-section");
@@ -150,21 +150,21 @@ $username =   $_SESSION['username']
             </div>
             <div class="row">
                 <div class="row-img">
-                    <img src="./homeImage/f2.jpg" alt="">
+                    <img src="./image/Clothes-section.jpg" alt="">
                 </div>
-                <h4>Medicines</h4>
+                <h4>Clothes</h4>
             </div>
             <div class="row">
                 <div class="row-img">
-                    <img src="./homeImage/f3.jpg" alt="">
+                    <img src="./image/shoes-section.jpg" alt="">
                 </div>
-                <h4>Undergarments</h4>
+                <h4>Shoes</h4>
             </div>
             <div class="row">
                 <div class="row-img">
-                    <img src="./homeImage/f4.jpg" alt="" id="scrollTrigger2">
+                    <img src="./image/Nutrients-section.jpeg" alt="" id="scrollTrigger2">
                 </div>
-                <h4 id="scrollTrigger2">Vitamins</h4>
+                <h4 id="scrollTrigger2">Nutrients</h4>
                 <script>
                     document.getElementById("scrollTrigger2").addEventListener("click", function () {
                         const section = document.getElementById("vitamins-section");
@@ -174,9 +174,9 @@ $username =   $_SESSION['username']
             </div>
             <div class="row">
                 <div class="row-img">
-                    <img src="./homeImage/f4.jpg" alt="">
+                    <img src="./image/Body-Care Section.jpg" alt="">
                 </div>
-                <h4>Syrup</h4>
+                <h4>Body Care</h4>
             </div>
         </div>
     </section>
@@ -265,54 +265,45 @@ $username =   $_SESSION['username']
         </div>
         <div class="p-content">
             <div class="box">
-                <img src="./homeImage/p1.jpeg" alt="">
-                <h5>Smaagra Pharma</h5>
+                <img src="./image/Happy-Hours.jpg" alt="">
+                <h5>Happy Hours</h5>
                 <h4>Maharajgunj</h4>
             </div>
             <div class="box">
-                <img src="./homeImage/p2.jpeg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
+                <img src="./image/KidZilla.jpg" alt="">
+                <h5>Kid Zilla</h5>
+                <h4>Budhanilkantha</h4>
             </div>
             <div class="box">
-                <img src="./homeImage/p3.jpeg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
+                <img src="./image/Moms And Kids.webp" alt="">
+                <h5>Moms & Kids</h5>
+                <h4>Singha Durbar</h4>
             </div>
             <div class="box">
-                <img src="./homeImage/p4.jpeg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
+                <img src="./image/Mumkins.jpg" alt="">
+                <h5>Mumkins</h5>
+                <h4>Chabahil</h4>
             </div>
             <div class="box">
-                <img src="./homeImage/p5.jpg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
+                <img src="./image/Nizamis.jpg" alt="">
+                <h5>Nizamis</h5>
+                <h4>Basundhara</h4>
             </div>
             <div class="box">
-                <img src="./homeImage/p6.jpeg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
+                <img src="./image/Tickl-Me.jpg" alt="">
+                <h5>Tickl ME</h5>
+                <h4>Basantapur</h4>
             </div>
             <div class="box">
                 <img src="./homeImage/p7.jpg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
+                <h5>S.D. Pharmacy</h5>
+                <h4>Kalimati</h4>
             </div>
-            <div class="box">
-                <img src="./homeImage/p8.jpg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
-            </div>
+        
             <div class="box">
                 <img src="./homeImage/p6.jpeg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
-            </div>
-            <div class="box">
-                <img src="./homeImage/p6.jpeg" alt="">
-                <h5>Smaagra Pharma</h5>
-                <h4>Maharajgunj</h4>
+                <h5>Siphal Pharmacy</h5>
+                <h4>Sitapaila</h4>
             </div>
 
         </div>

@@ -37,6 +37,7 @@ $username = $_SESSION['username']
 
 
     <link rel="stylesheet" href="./product.css">
+    
 
     <style>
         .logout-button {
@@ -45,7 +46,7 @@ $username = $_SESSION['username']
             height: 3rem;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 1px;
             cursor: pointer;
             font-size: 16px;
         }
@@ -57,6 +58,29 @@ $username = $_SESSION['username']
         .logout-button:hover {
             background-color: #cc0000;
         }
+       
+
+
+.form-container img {
+   height: 60px;
+   width: 60px;
+   margin-top: 10px;
+}
+
+.form-container h1 {
+   text-align: center;
+   margin-top: 15px;
+}
+
+.form-container h4 {
+   margin-top: 15px;
+
+}
+.form-container2{
+   
+   border: 2px solid wheat; /* Green border */
+   background-color: wheat;
+   padding: 10px; /* Add some padding for spacing */}
     </style>
 </head>
 
@@ -64,16 +88,42 @@ $username = $_SESSION['username']
 
 
     <div class="form-container">
-        <div style="display:flex; justify-content:space-between">
-            <img src="../image/logo.jpg" alt="" style="height: 60px; width: 60px;">
-            <h1 style="text-align:center;">My Card</h1>
-            <div style="display:flex; justify-content:space-between; gap:2rem;">
-            
-            <form method="POST">       <button class="nav-item logout" type="logout" value="logout" name="logout">Logout</button>     </form>
-
-                <h1>
+        <div style="display:flex; justify-content:space-between;" class="form-container2">
+            <img src="../image/logo.jpg" alt="" style="height: 60px; width: 60px; margin-top:10px;">
+            <h1 style="text-align:center; margin-top:15px;">MY CART</h1>
+            <div style="display:flex; justify-content:space-between; gap:0.5rem;">
+            <h4 style=" margin-top:15px;">
                     <?php echo $username; ?>
-                </h1>
+                </h4>
+            
+            <form method="POST" style="background-color: #ff0000; border:none; height:3rem; padding:0px; margin-top:5px;" >     
+              <button class="logout-button" type="logout" value="logout" name="logout">Logout</button>  
+              <div class="button-container">
+        <button class="button"><a href="../homepage.php" style="color: white; text-decoration: none;">Continue Shopping</a></button>
+    </div>
+    <style>
+         .button-container {
+            position: fixed;
+            bottom: 20px; 
+            right: 20px; 
+        }
+
+        .button {
+            background-color: #007bff;
+            color: #fff; 
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3; 
+        }
+    </style>  
+             </form>
+
+               
             </div>
         </div>
         <?php
@@ -109,7 +159,7 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Image</th>
-                            <th>product id</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <?php
@@ -124,27 +174,57 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<
                                 <?php echo $row['product_name']; ?>
                             </td>
                             <td>
-                                <?php echo $row['product_price']; ?>
+                                <?php echo "$".$row['product_price']; ?>
                             </td>
                             <td>
                                 <?php echo $row['cart_quantity']; ?>
                             </td>
                             <td><img src="./upload_image/<?php echo $row['product_img']; ?>" height="100"></td>
                             <td>
-                                <?php echo $row['product_id']; ?>
+                            <a href="myorder.php?delete=<?php echo $row['cart_id']; ?>" class="btn"
+                              style="width: fit-content;">
+                             Remove
+                           </a>
+                           
                             </td>
                         </tr>
 
                         <?php
                     }
                     ?>
+                    <?php
+                        if (isset($_GET['delete'])) {
+                            $id = $_GET['delete'];
+                            $deleteQuery = "DELETE FROM cart WHERE cart_id = ?";
+                         
+                            $stmt = mysqli_prepare($conn, $deleteQuery);
+                            mysqli_stmt_bind_param($stmt, "i", $id);
+                         
+                            if (mysqli_stmt_execute($stmt)) {
+                               echo "<script> alert('Product Has Been Deleted'); </script>";
+                                  $_SESSION['success_message'] = "Product Deleted Successfully";
+                                  echo '<script>setTimeout(function(){ window.location.href = "myorder.php"; }, 100);</script>';
+                               
+                            } else {
+                               echo "Error deleting product: " . mysqli_error($conn);
+                            }
+                            }
+                            mysqli_stmt_close($stmt);
+                           ?>
                 </table>
             </div>
-            <h1>Total:
-                <?php echo $total; ?>
+            <h1 style=" background-color: wheat;
+            color: #wheat;
+            height: 3rem;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 1px;
+            cursor: pointer;
+            font-size: 16px;">Total:
+                <?php echo "$".$total; ?>
             </h1>
 
-            <form action="order.php" method="POST">
+            <form action="order.php" method="POST" class="confirm-order">
     <h1>Confirm your order</h1>
     <br>
     <?php foreach ($productRows as $index => $product) { ?>
@@ -152,7 +232,7 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<
         <input type="hidden" name="quantity[]" value="<?php echo $product['cart_quantity']; ?>">
     <?php } ?>
     <br>
-    <input type="submit" value="Confirm Order" name="myorder">
+    <input type="submit" value="Confirm Order" name="myorder" class="form-container">
 </form>
 
 
