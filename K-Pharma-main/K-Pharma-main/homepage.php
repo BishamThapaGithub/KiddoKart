@@ -3,7 +3,7 @@ include_once('./php/connection.php');
 $sql = "SELECT * FROM products JOIN categories ON categories.c_id = products.c_id";
 
 $all_product = $conn->query($sql);
-print_r($all_product);
+// print_r($all_product);
 
 $previous_category = null;
 session_start();
