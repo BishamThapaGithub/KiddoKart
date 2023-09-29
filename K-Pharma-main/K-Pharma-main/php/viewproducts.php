@@ -264,6 +264,7 @@ $username = $_SESSION['username']
                                 <th>Quantity</th>
                                 <th>Image</th>
                                 <th>Customer name</th>
+                                <th>Order Date</th>
                             </tr>
                         </thead>
                         <?php
@@ -292,7 +293,11 @@ $username = $_SESSION['username']
                                 </td>
 
                                 <td><img src="./upload_image/<?php echo $row['product_img']; ?>" height="100"></td>
-                                <td><?php echo $row['Username'] ?>
+                                <td><?php echo $row['Username'] ?></td>
+                                <td>
+                                <?php echo $row['Order_Date']; ?>
+                                </td>
+
                             </tr>
                         <?php } ?>
                     </table>

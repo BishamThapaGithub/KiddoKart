@@ -1,4 +1,6 @@
+
 <?php
+error_reporting(0);
 include_once('./php/connection.php');
 $sql = "SELECT * FROM products JOIN categories ON categories.c_id = products.c_id";
 
@@ -66,8 +68,17 @@ $username = $_SESSION['username']
 
         </ul>
         <div class="navicon">
+            <?php
+            if(isset($_SESSION['username'])):
+?>
+            <a href="./php/viewproducts.php"><i class='bx bx-user'></i></a>
 
-            <a href="registration.php"><i class='bx bx-user'></i></a>
+            <?php
+            else:
+            ?>
+            <a href="signin.html"><i class='bx bx-user'></i></a>
+            <?php
+            endif ?>
             <a href="./php/myorder.php" style="margin-right: 5px;"><i class='bx bx-cart'></i></a>
             <h1 id="increase"
                 style="background-color: #f44336; border-radius: 50%; padding: 4px 8px; font-size: 14px;margin: 0; }"
@@ -386,7 +397,12 @@ $username = $_SESSION['username']
 
     let isLoggedIn = localStorage.getItem('isLoggedIn');
     console.log(isLoggedIn, typeof isLoggedIn)
-    
+    /*function(){
+        uses ajax
+        cart : where user_id = currently logged in user_id
+        use count query
+        change using dom element(on change)
+    }*/
     
     
     $(document).ready(function () {

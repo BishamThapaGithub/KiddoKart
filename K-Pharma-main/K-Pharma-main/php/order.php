@@ -48,7 +48,7 @@ if (isset($_POST['myorder'])) {
             mysqli_stmt_close($stmt_delete);
         }
     } else {
-        header('location:signin.html');
+        header('location:../signin.html');
     }
 }
 

@@ -12,9 +12,9 @@ if (isset($_POST['submit'])) {
     $cpassword = mysqli_real_escape_string($conn, $_POST['Re-Enterpassword']);
     $age = mysqli_real_escape_string($conn, $_POST['age']);
     $user_role = 'user';
-
+    $phone= $_POST['Mobile-number'];
     // Validate that all fields are filled
-    if (empty($fullname) || empty($email) || empty($password) || empty($cpassword) || empty($age)) {
+    if (empty($fullname) || empty($email) || empty($password) || empty($cpassword) || empty($age) || empty($phone)) {
         echo "Please fill in all fields";
     } else {
         // Check if the passwords match
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
             echo "Passwords do not match";
         } else {
             // Insert data into the database
-            $sql = "INSERT INTO users (Username, Email, Password, Age, UserRole) VALUES ('$fullname', '$email', '$password', '$age', '$user_role')";
+            $sql = "INSERT INTO users (Username, Email, Password, Age, UserRole , Phone_No) VALUES ('$fullname', '$email', '$password', '$age', '$user_role', '$phone')";
             $query = $conn->query($sql);
 
             if (!$query) {
@@ -71,13 +71,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body><div class="login-card-container">
     <div class="login-card">
-    <?php
-               if (isset($_SESSION['success_message'])) {
-                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
-                  // Clear the success message after displaying it
-                  unset($_SESSION['success_message']);
-               }
-               ?>
+   
         <div class="login-card-logo">
             <img src="./image/logo.jpg " alt="logo">
         </div>

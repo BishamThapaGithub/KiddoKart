@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include_once('connection.php');
 session_start();
 $username = $_SESSION['username']
@@ -81,13 +82,38 @@ $username = $_SESSION['username']
    border: 2px solid wheat; /* Green border */
    background-color: wheat;
    padding: 10px; /* Add some padding for spacing */}
+   .success-message {
+      color: #ffffff; 
+      background-color: #4caf50; 
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+   }
+
+   /* Style for the error message */
+   .error-message {
+      color: #ffffff; 
+      background-color: #f44336; 
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+   }
     </style>
 </head>
 
 <body>
 
-
+<?php
+               if (isset($_SESSION['success_message'])) {
+                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+                  // Clear the success message after displaying it
+                  unset($_SESSION['success_message']);
+               }
+               ?>
     <div class="form-container">
+        
         <div style="display:flex; justify-content:space-between;" class="form-container2">
             <img src="../image/logo.jpg" alt="" style="height: 60px; width: 60px; margin-top:10px;">
             <h1 style="text-align:center; margin-top:15px;">MY CART</h1>
@@ -201,9 +227,9 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include(
                             mysqli_stmt_bind_param($stmt, "i", $id);
                          
                             if (mysqli_stmt_execute($stmt)) {
-                               echo "<script> alert('Product Has Been Deleted'); </script>";
-                                  $_SESSION['success_message'] = "Product Deleted Successfully";
-                                  echo '<script>setTimeout(function(){ window.location.href = "myorder.php"; }, 100);</script>';
+                                echo "<script> alert('Product Has Been Deleted'); </script>";
+                                   $_SESSION['success_message'] = "Product Deleted Successfully";
+                                   echo '<script>setTimeout(function(){ window.location.href = "myorder.php"; }, 200);</script>';
                                
                             } else {
                                echo "Error deleting product: " . mysqli_error($conn);
