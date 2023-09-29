@@ -153,7 +153,7 @@ $username = $_SESSION['username']
                 <h4 id="scrollTrigger1">Toys</h4>
                 <script>
                     document.getElementById("scrollTrigger1").addEventListener("click", function () {
-                        const section = document.getElementById("equipments-section");
+                        const section = document.getElementById("Toys");
                         section.scrollIntoView({ behavior: "smooth" });
                     });
                 </script>
@@ -165,9 +165,15 @@ $username = $_SESSION['username']
             </div>
             <div class="row">
                 <div class="row-img">
-                    <img src="./image/Clothes-section.jpg" alt="">
+                    <img src="./image/Clothes-section.jpg" alt="" id="scrollTrigger2">
                 </div>
-                <h4>Clothes</h4>
+                <h4 id="scrollTrigger2">Clothes</h4>
+                <script>
+                    document.getElementById("scrollTrigger2").addEventListener("click", function () {
+                        const section = document.getElementById("-section");
+                        section.scrollIntoView({ behavior: "smooth" });
+                    });
+                </script>
             </div>
             <div class="row">
                 <div class="row-img">
@@ -210,7 +216,7 @@ $username = $_SESSION['username']
             }
             // Open a new category section and product container
             ?>
-            <section class="shop-container" id="equipments-section">
+            <section class="shop-container" id="Toys">
                 <h2 class="section-title">
                     <?php echo $row['c_title']; ?>
                 </h2>
@@ -354,7 +360,7 @@ $username = $_SESSION['username']
     </section>
 
     <div class="copyright">
-        <p>&copy; Copyright 2023 By Bisham Thapa</p>
+        <p>&copy; Copyright 2023 By Bisham Thapa && Anish Gurung</p>
     </div>
     <script>
         var closecart = document.getElementById("close-cart");
