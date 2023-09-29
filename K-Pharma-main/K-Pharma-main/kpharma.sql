@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2023 at 03:44 PM
+-- Generation Time: Sep 29, 2023 at 04:10 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,13 +34,6 @@ CREATE TABLE `cart` (
   `product_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `cart_quantity`, `user_id`, `product_id`) VALUES
-(77, 1, 33, 20);
-
 -- --------------------------------------------------------
 
 --
@@ -57,12 +50,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`c_id`, `c_title`) VALUES
-(1, 'Equipments'),
-(2, 'Medicines'),
-(3, 'Undergarments'),
-(4, 'Vitamins'),
-(5, 'Syrup'),
-(6, 'High Dose');
+(1, 'Toys'),
+(2, 'Clothes'),
+(4, 'Shoes'),
+(5, 'Nutrients'),
+(6, 'Body Care');
 
 -- --------------------------------------------------------
 
@@ -73,49 +65,19 @@ INSERT INTO `categories` (`c_id`, `c_title`) VALUES
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `users_id` int(11) DEFAULT NULL
+  `users_id` int(11) DEFAULT NULL,
+  `order_quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `product_id`, `users_id`) VALUES
-(21, 20, 33),
-(22, 20, 33),
-(23, 19, 33),
-(24, 19, 33),
-(25, 20, 33),
-(26, 20, 33),
-(27, 20, 33),
-(28, 19, 33),
-(29, 21, 33),
-(30, 19, 33);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `precription`
---
-
-CREATE TABLE `precription` (
-  `ID` int(11) NOT NULL,
-  `Username` varchar(50) DEFAULT NULL,
-  `p_date` date DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `p_img` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `precription`
---
-
-INSERT INTO `precription` (`ID`, `Username`, `p_date`, `description`, `p_img`) VALUES
-(6, 'abcd', '4333-12-23', 'ergsytrsutrtur', 'wallpaper.jpg'),
-(7, 'abcd', '3233-12-23', '53434543', 'wallpaper.jpg'),
-(8, 'abcd', '3344-01-22', '342ewtrewftr', 'wallpaper.jpg'),
-(9, 'abcd', '0000-00-00', '3423423425', 'wallpaper.jpg'),
-(10, 'abcd', '2023-08-22', 'ubiiihj', 'f1.jpg');
+INSERT INTO `orders` (`order_id`, `product_id`, `users_id`, `order_quantity`) VALUES
+(81, 38, 32, 1),
+(82, 39, 32, 1),
+(83, 40, 32, 1),
+(84, 64, 32, 1);
 
 -- --------------------------------------------------------
 
@@ -130,20 +92,29 @@ CREATE TABLE `products` (
   `product_price` varchar(225) DEFAULT NULL,
   `product_img` varchar(225) DEFAULT NULL,
   `c_id` int(11) DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL
+  `descriptions` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `categories`, `product_name`, `product_price`, `product_img`, `c_id`, `description`) VALUES
-(19, '', 'Bisham Thapa', '122', 'f2.jpg', 1, NULL),
-(20, '', 'Bisham Thapa', '1223', 'f1.jpg', 1, NULL),
-(21, '', 'Bisham Thapa', '1232', 'f2.jpg', 2, NULL),
-(22, '', 'ram thapa', '546', 'f5.png', 5, NULL),
-(23, '', 'Bisham Thapa', '45', 'f3.jpg', 5, NULL),
-(24, '', 'vitamin c', 'fsda', 'f5.png', 5, NULL);
+INSERT INTO `products` (`id`, `categories`, `product_name`, `product_price`, `product_img`, `c_id`, `descriptions`) VALUES
+(54, '', 'Doll', '15', 'Doll.jpg', 1, 'A small model of a human figure that is used as a child’s toy.'),
+(55, '', 'Toy-car', '5', 'Toy-Car.jpg', 1, 'A miniature, non-functioning replica of a car.'),
+(56, '', 'Aeroplane', '10', 'Toy-Aeroplane.jpg', 1, 'A miniature, non-functioning replica of an aeroplane.'),
+(57, '', 'Cotton Caps', '5', 'Cotton-Caps.jpg', 2, 'For Age: 4-5 yrs , Unisex , Pure sheep cotton used. '),
+(58, '', 'Trench Coat', '12', 'Trench-Coat.jpg', 2, 'For: 4-5 yrs , Female , Made of Cotton , Premium Quality.'),
+(59, '', 'SweatShirt', '11', 'Sweatshirt.jpg', 2, 'For: 6-7yrs , Size: medium , Mickey Mouse printed.'),
+(60, '', 'Velcro Sandal', '14', 'Velcro Sandal.jpg', 4, 'For Age: 4-5 yrs , Female , Stylish Premium Sandals.'),
+(61, '', 'Sports Shoe', '17', 'Sports-Shoes.jpg', 4, 'For Age: 4-5 yrs , Unisex , Perfect Pair For Your Child. '),
+(62, '', 'Star Shoe', '8', 'Star-Shoes.jpg', 4, 'For: 6-7yrs , Unisex, Star printed and dark pink.'),
+(63, '', 'Nestum', '5', 'Nestum.jpg', 5, 'For: 2-5 yrs, Nestle Nestum Serve with milk .'),
+(64, '', 'Lactogen', '6', 'lactogen.jpg', 5, 'For: 2-5 yrs, Nestle Lactogen Serve with milk .'),
+(65, '', 'Cerelac', '5', 'Cerelac.jpg', 5, 'For: 1-5 yrs, Nestle Cerelac Serve with milk .'),
+(66, '', 'Coffee Scrub', '12', 'Coffee Coconut Scrub.jpg', 6, 'Pure Coffee Coconut Scrub for your kid to good skin.'),
+(68, '', 'Lotion', '10', 'Cetaphil_lotion.jpg', 6, 'Cetaphil lotion for mosturizing and soft skin.'),
+(69, '', 'RoseGold Oil', '10', 'Rose Gold Oil.jpg', 6, 'Oil for good smell and soft skin for your child.');
 
 -- --------------------------------------------------------
 
@@ -167,10 +138,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`ID`, `Username`, `Email`, `Password`, `Age`, `UserRole`) VALUES
 (3, 'Bisham Thapa', 'bishamthapa@gmail.com', 'bisham12', 20, 'Admin'),
 (4, 'Anish Gurung', 'Anishgurung@gmail.com', 'anish12', 20, 'Admin'),
-(28, 'hdksfjakh ', 'nareshhh@gmail.com', 'bisham@1234', 21, 'user'),
-(31, 'BishamThapa', 'bisham122@gmail.com', 'ryuken@22', 21, 'user'),
 (32, 'Ram thapa', 'ramthapa@gmail.com', 'ramthapa@123', 23, 'user'),
-(33, 'hero dai', 'herodai@gmail.com', 'herodai1010', 29, 'user');
+(39, 'chiran thapa', 'chiranthapa@gmail.com', 'chiran@123', 21, 'user');
 
 --
 -- Indexes for dumped tables
@@ -199,12 +168,6 @@ ALTER TABLE `orders`
   ADD KEY `users_id` (`users_id`);
 
 --
--- Indexes for table `precription`
---
-ALTER TABLE `precription`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -225,7 +188,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -237,25 +200,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT for table `precription`
---
-ALTER TABLE `precription`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
