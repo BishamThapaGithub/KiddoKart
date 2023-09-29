@@ -71,7 +71,7 @@ $username = $_SESSION['username']
             <?php
             if(isset($_SESSION['username'])):
 ?>
-            <a href="./php/viewproducts.php"><i class='bx bx-user'></i></a>
+            <a href="./php/UserOrders.php"><i class='bx bx-user'></i></a>
 
             <?php
             else:

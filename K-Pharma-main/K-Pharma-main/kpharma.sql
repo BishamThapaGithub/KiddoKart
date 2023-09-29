@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 04:10 AM
+-- Generation Time: Sep 29, 2023 at 07:02 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -66,18 +66,21 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `users_id` int(11) DEFAULT NULL,
-  `order_quantity` int(11) NOT NULL
+  `order_quantity` int(11) NOT NULL,
+  `Order_Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `product_id`, `users_id`, `order_quantity`) VALUES
-(81, 38, 32, 1),
-(82, 39, 32, 1),
-(83, 40, 32, 1),
-(84, 64, 32, 1);
+INSERT INTO `orders` (`order_id`, `product_id`, `users_id`, `order_quantity`, `Order_Date`) VALUES
+(87, 54, 40, 1, '2023-09-29 13:18:49'),
+(88, 54, 41, 1, '2023-09-29 15:13:00'),
+(89, 55, 41, 1, '2023-09-29 15:13:00'),
+(90, 57, 41, 1, '2023-09-29 15:13:00'),
+(91, 54, 41, 1, '2023-09-29 15:13:00'),
+(92, 54, 41, 1, '2023-09-29 15:20:20');
 
 -- --------------------------------------------------------
 
@@ -114,7 +117,8 @@ INSERT INTO `products` (`id`, `categories`, `product_name`, `product_price`, `pr
 (65, '', 'Cerelac', '5', 'Cerelac.jpg', 5, 'For: 1-5 yrs, Nestle Cerelac Serve with milk .'),
 (66, '', 'Coffee Scrub', '12', 'Coffee Coconut Scrub.jpg', 6, 'Pure Coffee Coconut Scrub for your kid to good skin.'),
 (68, '', 'Lotion', '10', 'Cetaphil_lotion.jpg', 6, 'Cetaphil lotion for mosturizing and soft skin.'),
-(69, '', 'RoseGold Oil', '10', 'Rose Gold Oil.jpg', 6, 'Oil for good smell and soft skin for your child.');
+(69, '', 'RoseGold Oil', '10', 'Rose Gold Oil.jpg', 6, 'Oil for good smell and soft skin for your child.'),
+(71, '', 'Duck', '12', 'Rubber-Duck.jpg', 1, 'This rubber duck is perfect for you child.');
 
 -- --------------------------------------------------------
 
@@ -128,18 +132,19 @@ CREATE TABLE `users` (
   `Email` varchar(100) DEFAULT NULL,
   `Password` varchar(100) DEFAULT NULL,
   `Age` int(11) DEFAULT NULL,
-  `UserRole` varchar(10) NOT NULL
+  `UserRole` varchar(10) NOT NULL,
+  `Phone_No` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `Username`, `Email`, `Password`, `Age`, `UserRole`) VALUES
-(3, 'Bisham Thapa', 'bishamthapa@gmail.com', 'bisham12', 20, 'Admin'),
-(4, 'Anish Gurung', 'Anishgurung@gmail.com', 'anish12', 20, 'Admin'),
-(32, 'Ram thapa', 'ramthapa@gmail.com', 'ramthapa@123', 23, 'user'),
-(39, 'chiran thapa', 'chiranthapa@gmail.com', 'chiran@123', 21, 'user');
+INSERT INTO `users` (`ID`, `Username`, `Email`, `Password`, `Age`, `UserRole`, `Phone_No`) VALUES
+(3, 'Bisham Thapa', 'bishamthapa@gmail.com', 'bisham12', 20, 'Admin', '9840203991'),
+(4, 'Anish Gurung', 'Anishgurung@gmail.com', 'anish12', 20, 'Admin', '9812654788'),
+(40, 'ram thapa', 'ramthapa@gmail.com', 'ramthapa@123', 21, 'user', '9855662233'),
+(41, 'chiran thapa', 'chiranthapa@gmail.com', 'chiran@123', 22, 'user', '9842532568');
 
 --
 -- Indexes for dumped tables
@@ -188,7 +193,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -200,19 +205,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
