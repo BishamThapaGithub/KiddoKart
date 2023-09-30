@@ -9,9 +9,16 @@ $all_product = $conn->query($sql);
 
 $previous_category = null;
 session_start();
-
-$username = $_SESSION['username']
-
+$totalCartItem =0;
+$username = $_SESSION['username'];
+$user_ID = $_SESSION['ID'];
+$query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enclosed $user_ID in single quotes
+        $result = mysqli_query($conn, $query);
+        
+       
+            $rowCartItem = mysqli_fetch_assoc($result);
+            $totalCartItem = $rowCartItem['carts'];
+            
     ?>
 
 <!DOCTYPE html>
@@ -82,7 +89,9 @@ $username = $_SESSION['username']
             <a href="./php/myorder.php" style="margin-right: 5px;"><i class='bx bx-cart'></i></a>
             <h1 id="increase"
                 style="background-color: #f44336; border-radius: 50%; padding: 4px 8px; font-size: 14px;margin: 0; }"
-                class="cart-quantity">0</h1>
+                class="cart-quantity"><?php
+                echo $totalCartItem;
+                ?></h1>
             <div class="icon-container">
                 <a href="#"><i class='bx bx-menu'></i></a>
 
@@ -153,7 +162,7 @@ $username = $_SESSION['username']
                 <h4 id="scrollTrigger1">Toys</h4>
                 <script>
                     document.getElementById("scrollTrigger1").addEventListener("click", function () {
-                        const section = document.getElementById("Toys");
+                        const section = document.getElementById("equipments-section");
                         section.scrollIntoView({ behavior: "smooth" });
                     });
                 </script>
@@ -216,7 +225,7 @@ $username = $_SESSION['username']
             }
             // Open a new category section and product container
             ?>
-            <section class="shop-container" id="Toys">
+            <section class="shop-container" id="equipments-section">
                 <h2 class="section-title">
                     <?php echo $row['c_title']; ?>
                 </h2>
@@ -255,6 +264,7 @@ $username = $_SESSION['username']
                             <input type="hidden" class="productid" name="productid" value="<?php echo $row['id'] ?>">
                             <input type="number" class="quantity" value="1" name="quantity" min="1" max="12">
                             <input type="submit" value="Add to Cart" class="gotocart" name="gotocart">
+                            <input type="hidden" class="user_id" name="user_id" value="<?php echo $user_ID?>">
                         </form>
                     </div>
                 </div>
@@ -403,12 +413,17 @@ $username = $_SESSION['username']
 
     let isLoggedIn = localStorage.getItem('isLoggedIn');
     console.log(isLoggedIn, typeof isLoggedIn)
-    /*function(){
-        uses ajax
-        cart : where user_id = currently logged in user_id
-        use count query
-        change using dom element(on change)
-    }*/
+    function loadCart(){
+        $.ajax({
+                    url: "test4.php",
+                    type: "POST",
+                   
+                    success: function (data) {
+                        $("#increase").html(data);
+                            }
+                        });
+       
+    }
     
     
     $(document).ready(function () {
@@ -420,13 +435,14 @@ $username = $_SESSION['username']
             
             if (parseInt(isLoggedIn)) {
             
-                increment++;
+                // increment++;
                 // The user is logged in
                 // console.log("User is logged in.");
                 var form = $(this).closest('.product-form'); // Find the parent form
                 var quantity = form.find('.quantity').val(); // Find the quantity input within the form
                 var productid = form.find('.productid').val(); // Find the productid input within the form
-                $("#increase").text(increment);
+                var user_ID = form.find('.user_id').val();
+                console.log(user_ID, productid);
                 $.ajax({
                     url: "test.php",
                     type: "POST",
@@ -435,6 +451,18 @@ $username = $_SESSION['username']
                         alert("Added to Cart!");
                     }
                 });
+                $.ajax({
+                    url: "test4.php",
+    
+                    type: "POST",
+                    data: {user_id: user_ID}, // Changed the key to "user_id"
+                    success: function (response) {
+                        loadCart();
+                            }
+                            
+                        });
+                        
+            loadCart();
             }
             else {
                 var confirmSignIn = confirm("You are not logged in. Do you want to sign in?");
