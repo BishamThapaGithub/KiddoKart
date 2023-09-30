@@ -41,24 +41,6 @@ $username = $_SESSION['username']
     
 
     <style>
-        .logout-button {
-            background-color: #ff0000;
-            color: #ffffff;
-            height: 3rem;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 1px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .logout-button>a {
-            text-decoration: none;
-        }
-
-        .logout-button:hover {
-            background-color: #cc0000;
-        }
        
 
 
@@ -122,9 +104,7 @@ $username = $_SESSION['username']
                     <?php echo $username; ?>
                 </h4>
             
-            <form method="POST" style="background-color: #ff0000; border:none; height:3rem; padding:0px; margin-top:5px;" >     
-              <button class="logout-button" type="logout" value="logout" name="logout">Logout</button>  
-              <div class="button-container">
+            
         <button class="button"><a href="../homepage.php" style="color: white; text-decoration: none;">Continue Shopping</a></button>
     </div>
     <style>
@@ -152,10 +132,7 @@ $username = $_SESSION['username']
                
             </div>
         </div>
-        <?php
-if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include('../test3.php'); echo "<script> location.href='../signin.html'; </script>"; }
-
-?>
+       
         <div class="admin-product-form-container">
             <?php
             $user_id = $_SESSION['ID'];

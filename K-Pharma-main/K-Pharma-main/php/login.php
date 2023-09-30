@@ -34,7 +34,8 @@ session_start();
      
     }
   } else {
-    echo "Invalid email or password";
+    echo "<script> alert('Invalid Id Or Password!');</script>";
+      echo "<script> window.location.href= '../signin.html';</script>";
   }
 }
 

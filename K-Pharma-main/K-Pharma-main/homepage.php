@@ -92,27 +92,9 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
                 class="cart-quantity"><?php
                 echo $totalCartItem;
                 ?></h1>
-            <div class="icon-container">
-                <a href="#"><i class='bx bx-menu'></i></a>
-
-            </div>
+            
         </div>
-        <div class="cart" id="carts">
-            <h2 class="cart-title">Your cart</h2>
-            <!-- container -->
-            <div class="cart-content">
-
-            </div>
-            <!-- Total -->
-            <div class="total">
-                <div class="total-title">Total:</div>
-                <div class="total-price">$0</div>
-            </div>
-
-
-
-            <i class='bx bx-x' id="close-cart"> </i>
-        </div>
+        
 
 
     </header>
