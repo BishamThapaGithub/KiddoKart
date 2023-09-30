@@ -40,28 +40,9 @@ $username = $_SESSION['username']
 
     <link rel="stylesheet" href="./product.css">
     <style>
-        
-            .logout-button {
-            background-color: #ff0000;
-            color: #ffffff;
-            height: 3rem;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-left: -100px;
-        }
-
-        .logout-button>a {
-            text-decoration: none;
-        }
-
-        .logout-button:hover {
+        .nav-item logout:hover {
             background-color: #cc0000;
         }
-       
-        
     </style>
 </head>
 
@@ -199,23 +180,17 @@ $username = $_SESSION['username']
                             <svg>
                                 <use xlink:href="#icon-dashboard"></use>
                             </svg>
-                            <span>Your Order History</span>
+                            <span> Your Orders</span>
                         </a>
                     </li>
                    
                        
                     <i class='bx bx-arrow-back'></i>
-                                <button  style=" border: none;
-                                background-color: transparent;
-                                padding: 10px; width:fit-content;"><a href="../homepage.php">Continue Shopping</a></button>     
+                                <button  style=" border: 2px solid black;
+                                background-color: wheat;
+                                padding: 10px; "><a href="../homepage.php">Continue Shopping</a></button>     
                    
-                   <form method="POST" style="background-color: #ff0000; border:none; height:3rem; padding:0px; margin-top:5px; width:fit-content;" >     
-              <button class="logout-button" type="logout" value="logout" name="logout">Logout</button>  
-              <div class="button-container">
-              <?php
-if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include('../test3.php'); echo "<script> alert('redirecting to login page'); location.href='../signin.html'; </script>"; }
 
-?>
             </nav>
 
             <div id="sidebar__theme-switcher">
@@ -230,7 +205,7 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include(
         </div> <!-- sidebar -->
 
         <div class="form-container">
-            <h1>Your Order History</h1>
+            <h1>Order List</h1>
             <div class="admin-product-form-container">
                 <?php
                 $user_id = $_SESSION['ID'];
