@@ -245,7 +245,8 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
                         <form class="product-form" action="" method="POST">
                             <input type="hidden" class="productid" name="productid" value="<?php echo $row['id'] ?>">
                             <input type="number" class="quantity" value="1" name="quantity" min="1" max="12">
-                            <input type="submit" value="Add to Cart" class="gotocart" name="gotocart">
+                            <input type="submit" value="Add to Cart" class="gotocart" name="gotocart" style="background-color: brown; color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='brown'">
+
                             <input type="hidden" class="user_id" name="user_id" value="<?php echo $user_ID?>">
                         </form>
                     </div>
