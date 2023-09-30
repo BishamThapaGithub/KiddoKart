@@ -117,8 +117,8 @@ if (isset($_POST['submit'])) {
 
 
                 <label>Age</label><br>
-                <input type="number" name="age" id="name" placeholder="enter your age?">
-                <br><br>
+                <input type="number" name="age" id="age" placeholder="enter your age?" min="18">
+                <br> <span id="age" style="color: red;"></span><br><br>
 
 
 
@@ -131,73 +131,70 @@ if (isset($_POST['submit'])) {
         </div>
         </form>
 
-        <script>
-            function validation() {
-                var user = document.getElementById('user').value;
-                var emails = document.getElementById('emails').value;
-                var pass = document.getElementById('pass').value;
-                var confirmpass = document.getElementById('conpass').value;
+        
+       
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.querySelector('.register');
+            form.addEventListener("submit", function(event) {
+                var username = document.getElementById('user').value;
+                var email = document.getElementById('emails').value;
+                var password = document.getElementById('pass').value;
+                var confirmPassword = document.getElementById('conpass').value;
+                var mobileNumber = document.getElementById('MobNo').value;
                 var age = document.getElementById('age').value;
 
-                if (user == "") {
-                    document.getElementById('username').innerHTML = "*Please fill the Username*";
-                    return false;
-                }
-                if ((user.length <= 3) || (user.length > 25)) {
-                    document.getElementById('username').innerHTML = "*Username must consist of 3-25 characters*";
-                    return false;
-                }
-                if (!isNaN(user)) {
-                    document.getElementById('username').innerHTML = "*Only characters are allowed*";
-                    return false;
-                }
-                if (emails == "") {
-                    document.getElementById('emailids').innerHTML = "*Please fill the Email*";
-                    return false;
-                }
-                if (emails.indexOf('@') <= 0) {
-                    document.getElementById('emailids').innerHTML = "*@ is in an invalid position*";
-                    return false;
-                }
-                if ((emails.charAt(emails.length - 4) != '.') && (emails.charAt(emails.length - 3) != '.')) {
-                    document.getElementById('emailids').innerHTML = ". is at an invalid position";
-                    return false;
-                }
-                if (!emails.endsWith('@gmail.com')) {
-                    document.getElementById('emailids').innerHTML = "*Email must be a Gmail address*";
-                    return false;
-                }
-                if (pass == "") {
-                    document.getElementById('passwords').innerHTML = "*Please fill the Password*";
-                    return false;
-                }
-                if ((pass.length <= 8) || (pass.length > 25)) {
-                    document.getElementById('passwords').innerHTML = "*Password must be between 8-25 characters in length*";
-                    return false;
-                }
-                if (pass != confirmpass) {
-                    document.getElementById('passwords').innerHTML = "Passwords do not match";
-                    return false;
-                }
-                if (confirmpass == "") {
-                    document.getElementById('confirmpass').innerHTML = "*Please re-write your password*";
-                    return false;
-                }
-                if (age == "") {
-                    document.getElementById('ageError').innerHTML = "*Please fill in your age*";
-                    return false;
-                }
-                if (isNaN(age) || age <= 18) {
-                    document.getElementById('ageError').innerHTML = "*Age must be greater than 18*";
-                    return false;
+                // Regular expressions for validation
+                var usernameRegex = /^[a-zA-Z0-9_]{4,16}$/; 
+                var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
+                var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; 
+                var mobileNumberRegex = /^98[0-9]{8}$/; 
+
+                // Validation checks
+                if (!usernameRegex.test(username)) {
+                    document.getElementById('username').innerHTML = "Criteria: 4-16 characters, letters, numbers, and underscores";
+                    event.preventDefault();
+                } else {
+                    document.getElementById('username').innerHTML = "";
                 }
 
-                // If all validations pass, the form will submit
-                return true;
-            }
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailids').innerHTML = "Invalid Email";
+                    event.preventDefault();
+                } else {
+                    document.getElementById('emailids').innerHTML = "";
+                }
 
-        </script>
-        <script src="./javascript/popop.js"></script>
+                if (!passwordRegex.test(password)) {
+                    document.getElementById('passwords').innerHTML = "Criteria: at least 8 characters, one lowercase, one uppercase, and one digit";
+                    event.preventDefault();
+                } else {
+                    document.getElementById('passwords').innerHTML = "";
+                }
+
+                if (password !== confirmPassword) {
+                    document.getElementById('confirmpass').innerHTML = "Passwords do not match";
+                    event.preventDefault();
+                } else {
+                    document.getElementById('confirmpass').innerHTML = "";
+                }
+
+                if (!mobileNumberRegex.test(mobileNumber)) {
+                    document.getElementById('MobNoError').innerHTML = "Mobile number is invalid";
+                    event.preventDefault();
+                } else {
+                    document.getElementById('MobNoError').innerHTML = "";
+                }
+
+                if (age < 18) {
+                    ocument.getElementById('MobNoError').innerHTML = "Age Should be above 18";
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 
