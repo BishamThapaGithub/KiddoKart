@@ -27,7 +27,7 @@ session_start();
       $_SESSION['username'] = $row['Username'];
       $_SESSION['ID'] = $row['ID'];
       echo $row['UserRole'];
-      
+      echo "<script> alert('Login Successfull!');</script>";
       echo "<script> window.location.href= '../homepage.php';</script>";
       exit();
       
