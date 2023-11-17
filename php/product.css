@@ -121,11 +121,13 @@
 .product-display-table td {
   padding: 1.5rem;
   text-align: left;
+  border: 1px solid #ddd; 
 }
 
 .product-display-table th {
   text-transform: uppercase;
   letter-spacing: 1px;
+  border: 1px solid #ddd; 
 }
 
 .product-display-table tbody tr {
