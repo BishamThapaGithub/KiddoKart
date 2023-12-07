@@ -24,19 +24,20 @@ body{
     color:var(--text-color);
     background: white;
 }
-header{
+header {
     position: fixed;
     top: 0;
     right: 0;
     z-index: 1000;
     width: 100%;
-    background: transparent;
     padding: 27px 17%;
     display: flex;
     justify-content: space-between;
     transition: 0.50s ease;
     background-color: #fbfbfc;
-
+    border-bottom: 2px solid #0c0b0b; /* Add a 2px solid border at the bottom */
+    box-shadow: 4px 2px 5px rgba(1, 1, 1, 1); /* Add a subtle box shadow */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .navbar{
@@ -45,7 +46,7 @@ header{
 .navbar a{
     
 vertical-align: middle;
-font-size: 20px;
+font-size: 28px;
 color: var(--text-color);
 margin-right: 18px;
 margin-left: 5px;
@@ -132,7 +133,7 @@ section{
 
 header.sticky{
     padding: 15px 5%;
-    background: wheat;
+    /* background: wheat; */
     backdrop-filter: blur(35px);
 }
 .feature-content{

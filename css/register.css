@@ -129,6 +129,9 @@ body {
     border-radius: 100px;
     width: 80%;
     transition: background .10s;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
 }
 
 .login-card input:focus {
@@ -157,6 +160,7 @@ body {
     background-color: rgba(0, 0, 0, 0.85);
     cursor: pointer;
 }
+
 h2{
     
         text-align: center;
