@@ -216,7 +216,7 @@ if (isset($_GET['delete'])) {
 
          <ul>
             <li id="main-header__logo">
-               <a href="index.html">
+               <a href="#">
                   <h1>Kiddo Kart</h1>
 
                </a>

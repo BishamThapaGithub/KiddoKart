@@ -1,10 +1,11 @@
 <?php
 
 include_once('connection.php');
+include('dashboard.php');
 session_start();
 $_SESSION['user_role'] = 'User';
 $username = $_SESSION['username']
-?>
+	?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +39,33 @@ $username = $_SESSION['username']
 
 	<!-- Main stylesheet -->
 	<link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="./product.css">
+	<style>
+		#main-content {
+			/* Add your main content styles here */
+		}
+
+		.statistics {
+			display: flex;
+			justify-content: space-around;
+			margin-top: 20px;
+		}
+
+		.statistic-item {
+			text-align: center;
+		}
+
+		.label {
+			display: block;
+			font-weight: bold;
+		}
+
+		.value {
+			font-size: 1.2em;
+			color: #007BFF;
+			/* Choose your desired color */
+		}
+	</style>
 </head>
 
 <body>
@@ -137,17 +165,19 @@ $username = $_SESSION['username']
 
 			<ul>
 				<li id="main-header__logo">
-					<a href="index.html">
+					<a href="#">
 						<h1>Kiddo Kart</h1>
 					</a>
 				</li>
-				
+
 
 
 			</ul>
 
 			<a href="#">
-			<span><?php echo $username ?></span>
+				<span>
+					<?php echo $username ?>
+				</span>
 				<svg>
 					<use xlink:href="#icon-user"></use>
 				</svg>
@@ -185,7 +215,7 @@ $username = $_SESSION['username']
 							<span>Add Product</span>
 						</a>
 					</li>
-					
+
 					<li>
 						<a href="./userlist.php">
 							<svg>
@@ -215,10 +245,29 @@ $username = $_SESSION['username']
 				</svg>
 			</div> <!-- sidebar__theme-switcher -->
 		</div> <!-- sidebar -->
-
 		<div id="main-content">
-			<div id="main-content__container">
-				<p>DASHBOARD</p>
+			<!-- Your content goes here -->
+
+			<div class="statistics">
+				<div class="statistic-item">
+					<span class="label">Total Users:</span>
+					<span class="value" id="total-users"><?php echo getTotalUsers();?></span>
+				</div>
+
+				<div class="statistic-item">
+					<span class="label">Total Categories:</span>
+					<span class="value" id="total-categories"><?php echo getTotalCategories();?></span>
+				</div>
+
+				<div class="statistic-item">
+					<span class="label">Total Orders:</span>
+					<span class="value" id="total-orders"><?php echo getTotalOrders();?></span>
+				</div>
+
+				<div class="statistic-item">
+					<span class="label">Total Products:</span>
+					<span class="value" id="total-products"><?php echo getTotalProducts();?></span>
+				</div>
 			</div>
 		</div> <!-- main-content -->
 	</section> <!-- main -->
