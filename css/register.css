@@ -14,11 +14,13 @@ body {
 
 /* Login Card */
 .login-card {
-    width: 90%;
+    height: fit-content;
+    width: 400px;
     background: rgba(255, 255, 255, 0.967);
     padding: 4rem;
     border-radius: 10px;
     position: relative;
+    
 }
 
 .login-card::before {
@@ -120,7 +122,9 @@ body {
 /* Login Card Form Elements */
 .login-card input[type="text"],
 .login-card input[type="password"],
-.login-card input[type="email"] {
+.login-card input[type="email"],
+.login-card input[type="tel"],
+.login-card input[type="number"]{
     border: none;
     outline: none;
     background: rgba(31, 9, 9, 0.09);

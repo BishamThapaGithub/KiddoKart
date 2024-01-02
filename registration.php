@@ -39,6 +39,7 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -47,20 +48,10 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/register.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
     <link rel="stylesheet" href="./css/popup.css">
     <style>
-        /* Style for the success message */
-        .success-message {
-            color: green;
-            background-color: #e2f1dd;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
+        .success-message,
         .error-message {
             color: green;
             background-color: #e2f1dd;
@@ -73,6 +64,13 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+<?php
+               if (isset($_SESSION['success_message'])) {
+                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+                  // Clear the success message after displaying it
+                  unset($_SESSION['success_message']);
+               }
+               ?>
     <div class="login-card-container">
         <div class="login-card">
 
@@ -81,123 +79,73 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="login-card-header">
                 <h1>Register Here</h1>
-
             </div>
-            <form class="register" action="" method="post" onsubmit="return validation()">
-                <label> Username:</label>
-                <br>
+            <form class="register" action="" method="post" onsubmit="return validateForm()">
+                <label> Username:</label><br>
                 <input type="text" name="Username" id="user" class="form-control" placeholder="Enter your Username"
                     autocomplete="off">
-                <br>
-                <span id="username" style="color: red;"></span>
-                <br>
-                <label>Email: </label>
-                <br>
+                <br><span id="usernameError" style="color: red;"></span><br>
+                <label>Email: </label><br>
                 <input type="email" name="email" id="emails" class="form-control" placeholder="Enter your email"
                     autocomplete="off"> <br>
-                <span id="emailids" style="color: red;"></span><br>
-                <label>Password: </label>
-                <br>
+                <span id="emailError" style="color: red;"></span><br>
+                <label>Password: </label><br>
                 <input type="password" name="password" id="pass" class="form-control" placeholder="Enter Password"
                     autocomplete="off"> <br>
-                <span id="passwords" style="color: red;"></span><br>
-                <label>Confirm Password: </label>
-                <br>
+                <span id="passwordError" style="color: red;"></span><br>
+                <label>Confirm Password: </label><br>
                 <input type="password" name="Re-Enterpassword" id="conpass" class="form-control"
                     placeholder="Re-Enterpassword" autocomplete="off"> <br>
-                <span id="confirmpass" style="color: red;"></span><br>
-                <label>Mobile Number: </label>
-                <br>
-                <input type="tel" name="Mobile-number" id="MobNo" class="form-control" required pattern="98[0-9]{8}"
+                <span id="confirmPasswordError" style="color: red;"></span><br>
+                <label>Mobile Number: </label><br>
+                <input type="tel" name="Mobile-number" id="MobNo" class="form-control"
                     title="Mobile number should start with 98 and be 10 digits in total" placeholder="XXXXXXXXXX"
                     autocomplete="off">
-                <br>
-                <span id="MobNo" style="color: red;"></span><br>
-
-
-
+                <br><span id="mobileNumberError" style="color: red;"></span><br>
                 <label>Age</label><br>
                 <input type="number" name="age" id="age" placeholder="enter your age?" min="18">
-                <br> <span id="age" style="color: red;"></span><br><br>
-
-
-
+                <br><span id="ageError" style="color: red;"></span><br><br>
                 <button type="submit" name="submit" value="submit">Register</button>
                 <div class="login-card-footer">
                     already have an account? <a href="signin.html">Login Here</a>
                 </div>
-
-
+            </form>
         </div>
-        </form>
+    </div>
 
-        
-       
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var form = document.querySelector('.register');
-            form.addEventListener("submit", function(event) {
-                var username = document.getElementById('user').value;
-                var email = document.getElementById('emails').value;
-                var password = document.getElementById('pass').value;
-                var confirmPassword = document.getElementById('conpass').value;
-                var mobileNumber = document.getElementById('MobNo').value;
-                var age = document.getElementById('age').value;
+        function validateForm() {
+            var username = document.getElementById('user').value;
+            var email = document.getElementById('emails').value;
+            var password = document.getElementById('pass').value;
+            var confirmPassword = document.getElementById('conpass').value;
+            var mobileNumber = document.getElementById('MobNo').value;
+            var age = document.getElementById('age').value;
 
-                // Regular expressions for validation
-                var usernameRegex = /^[a-zA-Z0-9_]{4,16}$/; 
-                var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
-                var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; 
-                var mobileNumberRegex = /^98[0-9]{8}$/; 
+            // Regular expressions for validation
+            var usernameRegex = /^[a-zA-Z0-9_]{4,16}$/;
+            var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            var mobileNumberRegex = /^(98|97)[0-9]{8}$/;
 
-                // Validation checks
-                if (!usernameRegex.test(username)) {
-                    document.getElementById('username').innerHTML = "Criteria: 4-16 characters, letters, numbers, and underscores";
-                    event.preventDefault();
-                } else {
-                    document.getElementById('username').innerHTML = "";
-                }
 
-                if (!emailRegex.test(email)) {
-                    document.getElementById('emailids').innerHTML = "Invalid Email";
-                    event.preventDefault();
-                } else {
-                    document.getElementById('emailids').innerHTML = "";
-                }
+            // Validation checks
+            document.getElementById('usernameError').innerHTML = !usernameRegex.test(username) ? "Criteria: 4-16 characters, letters, numbers, and underscores" : "";
+            document.getElementById('emailError').innerHTML = !emailRegex.test(email) ? "Invalid Email" : "";
+            document.getElementById('passwordError').innerHTML = !passwordRegex.test(password) ? "Criteria: at least 8 characters, one lowercase, one uppercase, and one digit" : "";
+            document.getElementById('confirmPasswordError').innerHTML = password !== confirmPassword ? "Passwords do not match" : "";
+            document.getElementById('mobileNumberError').innerHTML = !mobileNumberRegex.test(mobileNumber) ? "Mobile number should start with 97 or 98 and 10 digiths in total" : "";
+            document.getElementById('ageError').innerHTML = age < 18 ? "Age should be above 18" : "";
 
-                if (!passwordRegex.test(password)) {
-                    document.getElementById('passwords').innerHTML = "Criteria: at least 8 characters, one lowercase, one uppercase, and one digit";
-                    event.preventDefault();
-                } else {
-                    document.getElementById('passwords').innerHTML = "";
-                }
-
-                if (password !== confirmPassword) {
-                    document.getElementById('confirmpass').innerHTML = "Passwords do not match";
-                    event.preventDefault();
-                } else {
-                    document.getElementById('confirmpass').innerHTML = "";
-                }
-
-                if (!mobileNumberRegex.test(mobileNumber)) {
-                    document.getElementById('MobNoError').innerHTML = "Mobile number is invalid";
-                    event.preventDefault();
-                } else {
-                    document.getElementById('MobNoError').innerHTML = "";
-                }
-
-                if (age < 18) {
-                    ocument.getElementById('MobNoError').innerHTML = "Age Should be above 18";
-                    event.preventDefault();
-                }
-            });
-        });
+            // If any error is present, prevent form submission
+            return !(document.getElementById('usernameError').innerHTML ||
+                document.getElementById('emailError').innerHTML ||
+                document.getElementById('passwordError').innerHTML ||
+                document.getElementById('confirmPasswordError').innerHTML ||
+                document.getElementById('mobileNumberError').innerHTML ||
+                document.getElementById('ageError').innerHTML);
+        }
     </script>
-
-
 </body>
-
-
-
 
 </html>
