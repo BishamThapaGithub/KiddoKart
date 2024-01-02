@@ -139,7 +139,7 @@ $username = $_SESSION['username']
 
             <ul>
                 <li id="main-header__logo">
-                    <a href="./admindb.html">
+                    <a href="#">
                     <h1>Kiddo Kart</h1>
                     </a>
                 </li>
