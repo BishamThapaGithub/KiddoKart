@@ -42,29 +42,45 @@ $username = $_SESSION['username']
 	<link rel="stylesheet" href="./product.css">
 	<style>
 		#main-content {
-			/* Add your main content styles here */
+			background-color: #f4f4f4;
+			padding: 20px;
 		}
 
 		.statistics {
 			display: flex;
 			justify-content: space-around;
-			margin-top: 20px;
+			margin-top: 100px;
+			background-color: wheat;
 		}
 
 		.statistic-item {
+			background-color: #fff;
+			border-radius: 8px;
+			padding: 20px;
 			text-align: center;
+			box-shadow: 0 4px 6px rgba(1, 1, 1, 1);
+			transition: transform 0.3s;
+			border: 1px solid #ddd;
+			
+		}
+
+
+		.statistic-item:hover {
+			transform: translateY(-5px);
 		}
 
 		.label {
 			display: block;
 			font-weight: bold;
+			margin-bottom: 10px;
 		}
 
 		.value {
-			font-size: 1.2em;
+			font-size: 1.5em;
 			color: #007BFF;
-			/* Choose your desired color */
 		}
+
+		/* Additional styling for a more polished look */
 	</style>
 </head>
 
@@ -251,22 +267,30 @@ $username = $_SESSION['username']
 			<div class="statistics">
 				<div class="statistic-item">
 					<span class="label">Total Users:</span>
-					<span class="value" id="total-users"><?php echo getTotalUsers();?></span>
+					<span class="value" id="total-users">
+						<?php echo getTotalUsers(); ?>
+					</span>
 				</div>
 
 				<div class="statistic-item">
 					<span class="label">Total Categories:</span>
-					<span class="value" id="total-categories"><?php echo getTotalCategories();?></span>
+					<span class="value" id="total-categories">
+						<?php echo getTotalCategories(); ?>
+					</span>
 				</div>
 
 				<div class="statistic-item">
 					<span class="label">Total Orders:</span>
-					<span class="value" id="total-orders"><?php echo getTotalOrders();?></span>
+					<span class="value" id="total-orders">
+						<?php echo getTotalOrders(); ?>
+					</span>
 				</div>
 
 				<div class="statistic-item">
 					<span class="label">Total Products:</span>
-					<span class="value" id="total-products"><?php echo getTotalProducts();?></span>
+					<span class="value" id="total-products">
+						<?php echo getTotalProducts(); ?>
+					</span>
 				</div>
 			</div>
 		</div> <!-- main-content -->
