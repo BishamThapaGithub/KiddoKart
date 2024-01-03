@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     $age = mysqli_real_escape_string($conn, $_POST['age']);
     $user_role = 'user';
     $phone = $_POST['Mobile-number'];
+
     // Validate that all fields are filled
     if (empty($fullname) || empty($email) || empty($password) || empty($cpassword) || empty($age) || empty($phone)) {
         echo "<script>alert('Please fill all fields');</script>";
@@ -22,23 +23,22 @@ if (isset($_POST['submit'])) {
             echo "Passwords do not match";
         } else {
             // Insert data into the database
-            $sql = "INSERT INTO users (Username, Email, Password, Age, UserRole , Phone_No) VALUES ('$fullname', '$email', '$password', '$age', '$user_role', '$phone')";
+            $sql = "INSERT INTO users (Username, Email, Password, Age, UserRole, Phone_No) VALUES ('$fullname', '$email', '$password', '$age', '$user_role', '$phone')";
             $query = $conn->query($sql);
 
             if (!$query) {
-                echo "Data insertion failed: " . mysqli_error($conn);
-            } else {
-                echo "<script> alert('Registration sucessfull '); </script>";
-                // Redirect to the login page
-                $_SESSION['success_message'] = "Registration successfull!";
-                echo '<script>setTimeout(function(){ window.location.href = "signin.html"; }, 2000);</script>';
-
-                exit();
+                die("Data insertion failed: " . mysqli_error($conn));
             }
+
+            // Redirect to the login page
+            $_SESSION['success_message'] = "Registration successful Login here!";
+            echo '<script>setTimeout(function(){ window.location.href = "signin.php"; }, 1000);</script>';
+            exit();
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,30 +50,15 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="./css/register.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
     <link rel="stylesheet" href="./css/popup.css">
-    <style>
-        .success-message,
-        .error-message {
-            color: green;
-            background-color: #e2f1dd;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-    </style>
+    
 </head>
 
 <body>
-<?php
-               if (isset($_SESSION['success_message'])) {
-                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
-                  // Clear the success message after displaying it
-                  unset($_SESSION['success_message']);
-               }
-               ?>
-    <div class="login-card-container">
-        <div class="login-card">
 
+    <div class="login-card-container">
+        
+        <div class="login-card">
+     
             <div class="login-card-logo">
                 <img src="./image/logo.jpg " alt="logo">
             </div>

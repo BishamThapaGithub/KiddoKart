@@ -1,3 +1,7 @@
+
+<?php
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,12 +12,31 @@
     <link rel="stylesheet" href="./css/signin.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
     <title>Login Page</title>
+    <style>
+        .success-message,
+        .error-message {
+            color: green;
+            background-color: #e2f1dd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="login-card-container">
+ 
         <div class="login-card">
+        <?php
+               if (isset($_SESSION['success_message'])) {
+                  echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+                  // Clear the success message after displaying it
+                  unset($_SESSION['success_message']);
+               }    
+               ?>
             <div class="login-card-logo">
                 <img src="logo.jpg" alt="logo">
             </div>
