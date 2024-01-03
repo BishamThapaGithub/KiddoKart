@@ -213,7 +213,7 @@ $username = $_SESSION['username']
               <button class="logout-button" type="logout" value="logout" name="logout">Logout</button>  
               <div class="button-container">
               <?php
-if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include('../test3.php'); echo "<script> alert('redirecting to login page'); location.href='../signin.html'; </script>"; }
+if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include('../test3.php'); echo "<script> alert('redirecting to login page'); location.href='../signin.php'; </script>"; }
 
 ?>
             </nav>

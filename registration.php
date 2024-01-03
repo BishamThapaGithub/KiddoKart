@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
                 <br><span id="ageError" style="color: red;"></span><br><br>
                 <button type="submit" name="submit" value="submit">Register</button>
                 <div class="login-card-footer">
-                    already have an account? <a href="signin.html">Login Here</a>
+                    already have an account? <a href="signin.php">Login Here</a>
                 </div>
             </form>
         </div>

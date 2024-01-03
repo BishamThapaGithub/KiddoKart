@@ -216,7 +216,7 @@ $username = $_SESSION['username']
                                 padding: 10px; ">Logout</button>     
 
                             <?php
-                            if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<script> location.href='../signin.html'; </script>"; }
+                            if (isset($_POST['logout'])) {   session_unset();   session_destroy();   echo "<script> location.href='../signin.php'; </script>"; }
 
                                 ?> -->
 

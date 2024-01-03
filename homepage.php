@@ -83,7 +83,7 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
             <?php
             else:
             ?>
-            <a href="signin.html"><i class='bx bx-user'></i></a>
+            <a href="signin.php"><i class='bx bx-user'></i></a>
             <?php
             endif ?>
             <a href="./php/myorder.php" style="margin-right: 5px;"><i class='bx bx-cart'></i></a>
@@ -452,7 +452,7 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
                 if (confirmSignIn) {
                     console.log("chiran")
                     // User clicked OK (Sign In)
-                    window.location.href = 'signin.html'; // Redirect to sign-in page
+                    window.location.href = 'signin.php'; // Redirect to sign-in page
                     
                 } else {
                     // User clicked Cancel
