@@ -36,38 +36,68 @@ $username = $_SESSION['username']
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+		integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- Main stylesheet -->
 	<link rel="stylesheet" href="app.css">
 	<link rel="stylesheet" href="./product.css">
 	<style>
 		#main-content {
-			background-color: #f4f4f4;
+			
 			padding: 20px;
 		}
 
 		.statistics {
 			display: flex;
-			justify-content: space-around;
-			margin-top: 100px;
-			background-color: wheat;
+			justify-content: space-evenly;
+			margin-top: 1px;
+
 		}
 
 		.statistic-item {
-			background-color: #fff;
+
 			border-radius: 8px;
-			padding: 20px;
+			padding: 10px;
 			text-align: center;
 			box-shadow: 0 4px 6px rgba(1, 1, 1, 1);
 			transition: transform 0.3s;
 			border: 1px solid #ddd;
-			
+			width: 200px;
+			background-color: wheat;
+
 		}
 
 
 		.statistic-item:hover {
 			transform: translateY(-5px);
 		}
+
+		.graphbox {
+			display: flex;
+			position: relative;
+			width: 23rem;
+			justify-content: center;
+			gap: 2rem;
+			width: 100%;
+			padding: 20px;
+			margin-top: 50px;
+
+		}
+
+		.graphbox .box {
+			position: relative;
+			background: white;
+			padding: 20px;
+			display: flex;
+			justify-content: center;
+			width: 600px;
+			box-shadow: 0 7px 25px black;
+			border-radius: 20px;
+
+		}
+
+
 
 		.label {
 			display: block;
@@ -79,28 +109,26 @@ $username = $_SESSION['username']
 			font-size: 1.5em;
 			color: #007BFF;
 		}
-        
-            .logout-button {
-            background-color: #ff0000;
-            color: #ffffff;
-            height: 3rem;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-left: -100px;
-        }
 
-        .logout-button>a {
-            text-decoration: none;
-        }
+		.logout-button {
+			background-color: #ff0000;
+			color: #ffffff;
+			height: 3rem;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			margin-left: -100px;
+		}
 
-        .logout-button:hover {
-            background-color: #cc0000;
-        }
-       
-    
+		.logout-button>a {
+			text-decoration: none;
+		}
+
+		.logout-button:hover {
+			background-color: #cc0000;
+		}
 	</style>
 </head>
 
@@ -268,13 +296,19 @@ $username = $_SESSION['username']
 							<span>View orders</span>
 						</a>
 					</li>
-					<form method="POST" style="background-color: #ff0000; border:none; height:3rem; padding:0px; margin-top:5px; width:fit-content;" >     
-              <button class="logout-button" type="logout" value="logout" name="logout">Logout</button>  
-              <div class="button-container">
-              <?php
-if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include('../test3.php'); echo "<script> alert('redirecting to login page'); location.href='../signin.php'; </script>"; }
+					<form method="POST"
+						style="background-color: #ff0000; border:none; height:3rem; padding:0px; margin-top:5px; width:fit-content;">
+						<button class="logout-button" type="logout" value="logout" name="logout">Logout</button>
+						<div class="button-container">
+							<?php
+							if (isset($_POST['logout'])) {
+								session_unset();
+								session_destroy();
+								include('../test3.php');
+								echo "<script> alert('redirecting to login page'); location.href='../signin.php'; </script>";
+							}
 
-?>
+							?>
 			</nav>
 
 			<div id="sidebar__theme-switcher">
@@ -294,6 +328,7 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include(
 				<div class="statistic-item">
 					<span class="label">Total Users:</span>
 					<span class="value" id="total-users">
+						<i class="fa-solid fa-user"></i>
 						<?php echo getTotalUsers(); ?>
 					</span>
 				</div>
@@ -301,6 +336,7 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include(
 				<div class="statistic-item">
 					<span class="label">Total Categories:</span>
 					<span class="value" id="total-categories">
+						<i class="fa-solid fa-list"></i>
 						<?php echo getTotalCategories(); ?>
 					</span>
 				</div>
@@ -308,6 +344,7 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include(
 				<div class="statistic-item">
 					<span class="label">Total Orders:</span>
 					<span class="value" id="total-orders">
+						<i class="fa-solid fa-cart-shopping"></i>
 						<?php echo getTotalOrders(); ?>
 					</span>
 				</div>
@@ -315,14 +352,41 @@ if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include(
 				<div class="statistic-item">
 					<span class="label">Total Products:</span>
 					<span class="value" id="total-products">
+						<i class="fa-solid fa-bag-shopping"></i>
 						<?php echo getTotalProducts(); ?>
 					</span>
+				</div>
+
+			</div>
+			<div class="graphbox">
+
+				<div class="box">
+
+					<canvas id="myChart"></canvas>
 				</div>
 			</div>
 		</div> <!-- main-content -->
 	</section> <!-- main -->
 
 	<script src="app.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		const ctx = document.getElementById('myChart');
+
+		new Chart(ctx, {
+			type: 'polarArea',
+			data: {
+				labels: ['Total users', 'total Orders'],
+				datasets: [{
+					label: '# of Votes',
+					data: [<?php echo getTotalUsers(); ?>, <?php echo getTotalOrders(); ?>],
+					borderWidth: 2
+				}]
+			},
+			options: {
+				responsive: true,
+			}
+		});   </script>
 </body>
 
 </html>
