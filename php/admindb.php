@@ -79,8 +79,28 @@ $username = $_SESSION['username']
 			font-size: 1.5em;
 			color: #007BFF;
 		}
+        
+            .logout-button {
+            background-color: #ff0000;
+            color: #ffffff;
+            height: 3rem;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: -100px;
+        }
 
-		/* Additional styling for a more polished look */
+        .logout-button>a {
+            text-decoration: none;
+        }
+
+        .logout-button:hover {
+            background-color: #cc0000;
+        }
+       
+    
 	</style>
 </head>
 
@@ -248,7 +268,13 @@ $username = $_SESSION['username']
 							<span>View orders</span>
 						</a>
 					</li>
+					<form method="POST" style="background-color: #ff0000; border:none; height:3rem; padding:0px; margin-top:5px; width:fit-content;" >     
+              <button class="logout-button" type="logout" value="logout" name="logout">Logout</button>  
+              <div class="button-container">
+              <?php
+if (isset($_POST['logout'])) {   session_unset();   session_destroy();  include('../test3.php'); echo "<script> alert('redirecting to login page'); location.href='../signin.php'; </script>"; }
 
+?>
 			</nav>
 
 			<div id="sidebar__theme-switcher">

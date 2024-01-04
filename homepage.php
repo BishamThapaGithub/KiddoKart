@@ -46,10 +46,7 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
             animation: zoomInOut 2s infinite;
         }
 
-        /* .icon-container:hover .upload-option {
-    display: block;
-  } */
-
+      
         @keyframes zoomInOut {
 
             0%,
@@ -362,7 +359,6 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
 
             cart.style.display = 'none';
 
-            //  alert(1);
         })
 
 
@@ -372,7 +368,7 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
 
             cart.style.display = 'block';
 
-            //  alert(1);
+           
         })
 
 
@@ -381,7 +377,6 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
     </script>
 
     <script src="./javascript/newscript.js"></script>
-    <!-- <script src="./javascript/prodduct.js"></script> -->
     <script src="./javascript/scroll.js"></script>
 
 
@@ -418,12 +413,10 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
             
             if (parseInt(isLoggedIn)) {
             
-                // increment++;
-                // The user is logged in
-                // console.log("User is logged in.");
-                var form = $(this).closest('.product-form'); // Find the parent form
-                var quantity = form.find('.quantity').val(); // Find the quantity input within the form
-                var productid = form.find('.productid').val(); // Find the productid input within the form
+                
+                var form = $(this).closest('.product-form'); 
+                var quantity = form.find('.quantity').val(); 
+                var productid = form.find('.productid').val(); 
                 var user_ID = form.find('.user_id').val();
                 console.log(user_ID, productid);
                 $.ajax({
@@ -438,7 +431,7 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
                     url: "test4.php",
     
                     type: "POST",
-                    data: {user_id: user_ID}, // Changed the key to "user_id"
+                    data: {user_id: user_ID},
                     success: function (response) {
                         loadCart();
                             }
@@ -451,12 +444,11 @@ $query = "SELECT COUNT(*) AS carts FROM cart WHERE user_id = '$user_ID'"; // Enc
                 var confirmSignIn = confirm("You are not logged in. Do you want to sign in?");
                 if (confirmSignIn) {
                     console.log("chiran")
-                    // User clicked OK (Sign In)
-                    window.location.href = 'signin.php'; // Redirect to sign-in page
+                   
+                    window.location.href = 'signin.php';
                     
                 } else {
-                    // User clicked Cancel
-                    // Do nothing or handle it as needed
+                   
                 }
 
             }

@@ -39,10 +39,13 @@ if (isset($_POST['myorder'])) {
             
             if (mysqli_stmt_execute($stmt_delete)) {
                 // Successful deletion from cart
-                header("location:../homepage.php?id=$rid&uname=$username");
+                  echo "<script>alert('Order confirmed. Redirecting to Homepage!');</script>";
+                  echo '<script>setTimeout(function(){ window.location.href = "../homepage.php?id=$rid&uname=$username"; }, 1000);</script>';
+                // header("location:../homepage.php?id=$rid&uname=$username");
             } else {
                 // Handle delete error
                 echo "Error deleting from cart: " . mysqli_error($conn);
+                
             }
             
             mysqli_stmt_close($stmt_delete);
