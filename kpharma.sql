@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2023 at 02:23 PM
+-- Generation Time: Jan 04, 2024 at 03:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -75,8 +75,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `product_id`, `users_id`, `order_quantity`, `Order_Date`) VALUES
-(87, 54, 40, 1, '2023-09-29 13:18:49'),
-(88, 54, 41, 1, '2023-09-29 15:13:00');
+(117, 56, 63, 1, '2024-01-04 13:34:35'),
+(118, 59, 63, 1, '2024-01-04 13:34:35'),
+(119, 61, 63, 1, '2024-01-04 13:34:35');
 
 -- --------------------------------------------------------
 
@@ -139,8 +140,7 @@ INSERT INTO `users` (`ID`, `Username`, `Email`, `Password`, `Age`, `UserRole`, `
 (3, 'Bisham Thapa', 'bishamthapa@gmail.com', 'bisham12', 20, 'Admin', '9840203991'),
 (4, 'Anish Gurung', 'Anishgurung@gmail.com', 'anish12', 20, 'Admin', '9812654788'),
 (40, 'ram thapa', 'ramthapa@gmail.com', 'ramthapa@123', 21, 'user', '9855662233'),
-(41, 'chiran thapa', 'chiranthapa@gmail.com', 'chiran@123', 22, 'user', '9842532568'),
-(42, 'Naresh Khatri', 'nareshkhatri@gmail.com', 'naresh@123', 20, 'user', '9852361458');
+(63, 'Bisham', 'bisham12@gmail.com', 'Bisham@12', 23, 'user', '9840203665');
 
 --
 -- Indexes for dumped tables
@@ -189,7 +189,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -201,19 +201,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Constraints for dumped tables
